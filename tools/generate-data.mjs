@@ -48,7 +48,7 @@ for (const monster of master.monsterList) {
 }
 
 const byName = (a, b) => a[0].localeCompare(b[0], "ja");
-const specialties = master.monsterSpecialtyList.map((s) => [s.name, s.detail ?? ""]).sort(byName);
+const specialties = master.monsterSpecialtyList.map((s) => [s.name, { detail: s.detail ?? "", stackable: s.isStackable !== false }]).sort(byName);
 const skills = master.skillList.map((s) => [s.name, { sp: s.sp, detail: s.detail ?? "" }]).sort(byName);
 const tarots = master.tarotList.map((t) => [t.name, { upright: t.upright ?? "", reversed: t.reversed ?? "" }]).sort(byName);
 

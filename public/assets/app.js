@@ -68,9 +68,9 @@ const FIGURES = {
     stack: () => {
         const fig = el("div", "fig-stack");
         const row = el("div", "fig-stack-row");
-        row.append(el("span", "fig-stack-chip", "甲殻"));
+        row.append(el("span", "fig-stack-chip is-nonstack", "甲殻"));
         row.append(el("span", "fig-stack-plus", "＋"));
-        row.append(el("span", "fig-stack-chip is-waste", "甲殻"));
+        row.append(el("span", "fig-stack-chip is-nonstack is-waste", "甲殻"));
         fig.append(row, el("p", "fig-stack-note", "2体目は効果が乗らない"));
         return fig;
     },
@@ -104,8 +104,7 @@ const FIGURES = {
 };
 
 const renderPolicy = () => {
-    const { head, body, points } = GUIDE.policy;
-    document.querySelector("#policy-head .sec-text").textContent = head;
+    const { body, points } = GUIDE.policy;
     document.getElementById("policy-body").textContent = body;
     const list = document.getElementById("policy-points");
     for (const point of points ?? []) list.append(el("li", null, point));
@@ -147,9 +146,10 @@ const tierBoard = (tiers) => {
         line.append(el("div", `rank rank-${row.rank.toLowerCase()}`, row.rank));
         const chips = el("ul", "chips");
         for (const ability of row.abilities) {
-            const chip = el("li", "chip-ability", ability);
-            const detail = SPECIALTIES[ability] ?? "";
-            if (detail) chip.title = detail;
+            const specialty = SPECIALTIES[ability];
+            const nonStackable = specialty && !specialty.stackable;
+            const chip = el("li", `chip-ability${nonStackable ? " is-nonstack" : ""}`, ability);
+            if (specialty) chip.title = specialty.detail + (nonStackable ? "\n部隊単位の能力（1体分のみ有効）" : "");
             else chip.append(el("span", "missing", " ?"));
             chips.append(chip);
         }
@@ -212,6 +212,11 @@ const renderTypes = () => {
         panel.append(el("p", "panel-lead", type.lead));
         panel.append(el("h3", "block-head", "特殊能力 Tier"));
         panel.append(tierBoard(type.tiers));
+        if (GUIDE.types.tierLegend) {
+            const legend = el("p", "tier-legend");
+            legend.append(el("span", "chip-ability is-nonstack legend-sample", "重複不可"), el("span", null, GUIDE.types.tierLegend));
+            panel.append(legend);
+        }
 
         if (type.skills?.length || type.tarots?.length) {
             const match = el("div", "match-grid");
@@ -266,7 +271,6 @@ const renderTypes = () => {
 const renderShell = () => {
     document.title = GUIDE.site.title;
     document.getElementById("site-title").textContent = GUIDE.site.title;
-    document.getElementById("site-lede").textContent = GUIDE.site.lede;
 
     document.getElementById("footer-disclaimer").textContent = GUIDE.footer.disclaimer;
     const credit = document.getElementById("footer-credit");

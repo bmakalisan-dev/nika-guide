@@ -70,13 +70,6 @@ h1 {
     letter-spacing: -.035em;
 }
 
-.lede {
-    max-width: 30em;
-    margin: 22px 0 0;
-    color: var(--ink-2);
-    font-size: 16px;
-}
-
 .section {
     max-width: 960px;
     margin: 0 auto;
@@ -109,18 +102,19 @@ h1 {
     font-size: 14px;
 }
 
-/* ───────── 方針 ───────── */
-
-.policy { padding: 26px 28px; }
+/* ───────── 方針（タイトル直下） ───────── */
 
 .policy-body {
-    margin: 0;
+    max-width: 34em;
+    margin: 24px 0 0;
+    color: var(--ink-2);
     font-size: 15.5px;
     line-height: 1.95;
 }
 
 .policy-points {
-    margin: 16px 0 0;
+    max-width: 34em;
+    margin: 14px 0 0;
     padding: 0;
     list-style: none;
 }
@@ -689,8 +683,6 @@ h1 {
 
     .tab { border-radius: 18px; }
 
-    .policy { padding: 20px 20px 22px; }
-
     .party-slots { gap: 6px; }
 
     .slot { padding: 10px 3px 8px; }
@@ -708,4 +700,32 @@ h1 {
 
 @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
+}
+
+/* ───────── 重複不可チップ（ゲーム内と同じ六角形） ───────── */
+
+.chip-ability.is-nonstack,
+.fig-stack-chip.is-nonstack {
+    border-radius: 0;
+    clip-path: polygon(11px 0, calc(100% - 11px) 0, 100% 50%, calc(100% - 11px) 100%, 11px 100%, 0 50%);
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+.tier-legend {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 0 0;
+    color: var(--ink-2);
+    font-size: 12.5px;
+}
+
+.legend-sample {
+    flex: none;
+    padding: 5px 16px;
+    background: var(--stage);
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: default;
 }
