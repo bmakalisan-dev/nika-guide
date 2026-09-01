@@ -306,6 +306,7 @@ h1 {
 
 .callout-label {
     margin: 0;
+    word-break: auto-phrase;
     font-family: var(--display);
     font-size: 18px;
     font-weight: 800;
@@ -352,6 +353,7 @@ h1 {
 
 .jou-head {
     margin: 12px 0 0;
+    word-break: auto-phrase;
     font-family: var(--display);
     font-size: 21px;
     font-weight: 800;
@@ -728,4 +730,30 @@ h1 {
     font-size: 11.5px;
     font-weight: 700;
     cursor: default;
+}
+
+/* 図: 規模と施設の段階 */
+.fig-kibo {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 4px;
+    width: 100%;
+}
+
+.fig-kibo-row {
+    min-width: max-content;
+    padding: 3px 10px;
+    border-radius: 7px;
+    background: var(--paper);
+    color: var(--ink-2);
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 1.7;
+    white-space: nowrap;
+}
+
+.fig-kibo-row.is-top {
+    background: linear-gradient(90deg, var(--accent), #8a6cf0);
+    color: var(--paper);
 }

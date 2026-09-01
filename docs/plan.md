@@ -5,7 +5,7 @@
 ブラウザゲーム「ニカ」の部隊編成を解説する、**非公式のファン攻略ページ**。静的HTML1枚。ビルド不要。
 
 - 短く、シンプルに。文章より図とモンスター画像で見せる。
-- 公式ではないことをヘッダーのバッジとフッターの免責文で明示する。
+- 公式ではないことを、タイトル直下の方針文とフッターの免責文で明示する。
 - 数値（HP・攻撃力・コスト等）は載せない。載せるのはモンスター画像・名前・属性まで。
 
 ## ページ構成
@@ -14,10 +14,10 @@
 
 | 区画 | 内容 |
 |------|------|
-| ヘッダー | 非公式バッジ／タイトル／リード文 |
-| 部隊の見取り図 | 3体スロット＋共有HP＋部隊属性の図に、番号つき解説3点 |
-| 編成の三か条 | 3枚のカード。各カードに小さい図（型の選択／三竦み／噛み合い） |
-| タイプ別 Tierと編成 | タブ4つ（速度型・防御型・攻撃型・クリティカル型）。各タブに「特殊能力Tier」と「代表的な編成」×2 |
+| ヘッダー | タイトル／このサイトの方針 |
+| 部隊の見取り図 | 3体スロット＋合算HP＋部隊属性の図に、番号つき解説3点 |
+| 編成の三か条 | 3枚のカード。各カードに小さい図（重複不可／方向性／規模の段階） |
+| タイプ別 Tierと編成 | タブ4つ（速度型・防御型・攻撃型・クリティカル型）。各タブに「特殊能力Tier」「相性が良いスキル・タロット」「代表的な編成」×2 |
 | フッター | 免責文／画像素材のクレジット |
 
 ## ファイル構成
@@ -30,10 +30,11 @@ public/
   assets/style.css          見た目
   assets/app.js             GUIDE と生成データからDOMを組み立てる
   data/guide.js             文面。ここだけ書き換えればページが変わる
-  data/generated.js         生成物。モンスター（画像・属性・規模・特殊能力）と特殊能力の説明
+  data/generated.js         生成物。モンスター・特殊能力・スキル・タロット
   images/monster/*.gif      掲載モンスターが使う画像のみ
   favicon.svg
 docs/plan.md                この文書
+tools/generate-data.mjs     generated.js と images/ を作り直すスクリプト
 README.md
 ```
 
@@ -41,18 +42,20 @@ README.md
 
 `public/data/guide.js` の `GUIDE` を書き換える。HTML・CSSには触らない。
 
-- `site` … タイトル、リード文、ゲームのURL（`gameUrl` を入れるとフッターにリンクが出る）
+- `site` … タイトル、ゲームのURL（`gameUrl` を入れるとフッターにリンクが出る）
+- `policy` … タイトル直下に出す方針。`body` と `points`
 - `overview` … 見取り図に出すモンスター3体と、番号つき解説3点
-- `principles.items` … 三か条。`figure` は `types` / `triangle` / `synergy` のいずれか
-- `types.items` … タイプごとの `tiers`（rank と特殊能力名）と `formations`（モンスター3体・狙い）
+- `principles.items` … 三か条。`figure` は `stack`（重複不可）/ `types`（方向性）/ `kibo`（規模の段階）/ `triangle`（三竦み）のいずれか
+- `types.items` … タイプごとの `tiers`（rank と特殊能力名）、`skills`・`tarots`（相性が良いもの。タロットは `{ name, position }` で正逆を指定できる）、`formations`（モンスター3体・狙い）。`accent` は `red` / `green` / `blue` / `amber`
+- `types.tierLegend` … Tierの下に出す凡例
 - `footer` … 免責文とクレジット
 
 決まりごと:
 
-- モンスター名・特殊能力名は**ゲーム内の表記と完全一致**させる。一致しないと画像が出ず、名前の下に「未登録」と表示される。
+- モンスター名・特殊能力名・スキル名・タロット名は**ゲーム内の表記と完全一致**させる。一致しないとチップに赤い「?」が付き、モンスターは画像が出ず「未登録」と表示される。
 - 部隊属性はモンスター3体から自動計算する（多数決／3色なら黒）。手で書かない。
-- 特殊能力チップのツールチップの説明文は自動で入る。文面側に書かない。
-- 文面が確定したら `draft: true` を `false` にして、上部の仮バナーを消す。
+- 特殊能力・スキル・タロットのツールチップの説明文は自動で入る。文面側に書かない。
+- 特殊能力チップの形も自動。**重複不可は六角形、重複可は丸ピル**で、ゲーム内の表示と揃えている。
 
 ## 掲載データ
 
@@ -60,7 +63,8 @@ README.md
 
 | データ | 取得元 |
 |---|---|
-| モンスター名・属性・規模・特殊能力、特殊能力の説明文 | `https://almaz.in.net/nika/api/master/get` |
+| モンスター名・属性・規模・特殊能力 | `https://almaz.in.net/nika/api/master/get` |
+| 特殊能力の説明文と重複可否、スキル、タロット | 同上 |
 | 名前と画像の対応 | ゲームのフロントが配信しているスクリプト |
 | 画像 | `https://almaz.in.net/nika/images/monster/*.gif` |
 
@@ -68,20 +72,21 @@ README.md
 
 ## デザイン仕様
 
-- 配色: 背景 `#f5f7fa` ／ カード白 ／ 文字 `#12141c`。**色は属性の赤・緑・青だけに使う**。装飾に別の色を足さない。
+- 配色: 背景 `#f4f6fd` に淡いグラデーション ／ カード白 ／ 文字 `#14162b` ／ アクセント紫 `#6b4bd8`
+- 属性色は 赤 `#e8443a` ／ 緑 `#17a05a` ／ 青 `#2f74e8`
+- タイプごとにアクセント色を持つ（速度=青・防御=緑・攻撃=赤・クリティカル=橙）。タブの選択状態とパネルのリード文に効く
+- Tierのランク色は S=橙 / A=紫 / B=青
 - フォント: 見出し Murecho 800 ／ 本文 IBM Plex Sans JP（Google Fonts）
-- 部品: 角丸14pxのカード、1pxの罫線、丸ピルのチップとタブ
+- 部品: 角丸18pxのカード、1pxの罫線、丸ピルのチップとタブ
 - モンスター画像は `image-rendering: pixelated` で原寸表示。拡大しない。
-- 主役の部品は「3体スロット＋共有HP＋属性チップ」の部隊カード。見取り図と編成例で同じ部品を使う。
+- 主役の部品は「3体スロット＋合算HP＋属性チップ」の部隊カード。見取り図と編成例で同じ部品を使う。
 - 900px以下で1カラム、560px以下でタブ2列。
 
 ## 公開（Cloudflare Pages）
 
 ビルドコマンドなし。**出力ディレクトリは `public`**。`wrangler.toml` の `pages_build_output_dir` で固定している。プロジェクト名 `name` がURLになる。
 
-- **Git連携**: リポジトリを接続し、push で自動デプロイ。Framework preset は「None」、Build command は空、Build output directory は `public`。
-- **Wrangler CLI**: `npx wrangler login` のあと `npx wrangler pages deploy`。
-- **手アップロード**: Workers & Pages → Create → Pages → Upload assets に `public` の中身をドラッグ。
+GitHubリポジトリを接続済みで、`main` への push で自動デプロイされる。設定は Framework preset「None」、Build command 空、Build output directory `public`。
 
 公開URLは `https://nika-guide.pages.dev`。独自ドメインは Custom domains から追加できる。
 
@@ -95,8 +100,7 @@ cd public && python -m http.server 8787
 
 ## 残作業
 
-- 文面の差し替え（`public/data/guide.js`）と `draft: false`
-- 文面確定後に `public/index.html` の robots を `index, follow` に戻す（いまは仮文面なので `noindex`）
+- 各タイプのTier内容、相性が良いスキル・タロット、編成例の確定
+- 内容が固まったら `public/index.html` の robots を `index, follow` に戻す（いまは `noindex`）
 - `site.gameUrl` にゲームのURLを入れる
-- 各タイプのTier内容と編成例の確定
 - OGP画像（`og:image`）を用意する場合は追加する

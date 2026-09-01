@@ -75,6 +75,18 @@ const FIGURES = {
         return fig;
     },
 
+    // 規模と施設の段階。上に行くほど強い
+    kibo: () => {
+        const steps = ["集落", "村落", "村落施設", "宿場町", "宿場町施設", "街", "街施設"];
+        const fig = el("div", "fig-kibo");
+        steps.forEach((label, i) => {
+            const row = el("div", `fig-kibo-row${i === steps.length - 1 ? " is-top" : ""}`, label);
+            row.style.width = `${46 + i * 9}%`;
+            fig.append(row);
+        });
+        return fig;
+    },
+
     types: () => {
         const fig = el("div", "fig-types");
         for (const label of ["速度", "防御", "攻撃", "クリティカル"]) {
