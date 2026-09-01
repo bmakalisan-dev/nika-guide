@@ -2,21 +2,21 @@
 
 const GUIDE = {
     meta: {
-        description: "ニカの部隊編成を、三か条とタイプ別の使用頻度Tier・編成例で図解するファン攻略ページ。",
+        description: "Nikaの部隊編成を、三か条とタイプ別の使用頻度Tier・編成例で図解するファン攻略ページ。",
         ogDescription: "重複を避け、方向性を決めて、規模を上げる。編成の考え方を図で確認する。",
         robots: "noindex, nofollow", // 内容が固まったら "index, follow"
     },
 
     site: {
-        title: "ニカ 編成講座",
-        gameName: "ニカ",
+        title: "Nika 編成講座",
+        gameName: "Nika",
         gameUrl: "", // 例: https://example.com/nika
     },
 
     // 冒頭。このサイトの立ち位置と読み方。
     policy: {
         head: "このサイトの方針",
-        body: "非公式のニカ編成講座です。編成の基本的な事項だけをシンプルにまとめています。",
+        body: "非公式のNika編成講座です。編成の基本的な事項だけをシンプルにまとめています。",
         points: [
             "実際に強い編成は、その時の相手や環境との相性で変わります。",
             "迷ったときは国宛などで聞いてみてください。",
@@ -25,7 +25,7 @@ const GUIDE = {
 
     // 部隊の構造を1枚で見せる図。
     overview: {
-        head: "部隊の見取り図",
+        head: "部隊のしくみ",
         monsters: ["白虎", "スレイプニル", "阿修羅"],
         callouts: [
             { label: "枠は3つ", body: "1部隊はモンスター3体。ここが編成のすべて。" },
