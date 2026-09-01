@@ -87,7 +87,7 @@ const GUIDE = {
                 tiers: [
                     { rank: "S", abilities: ["甲殻", "カウンター"] },
                     { rank: "A", abilities: ["大盾Ⅰ", "大盾Ⅱ", "シールド", "巨人"] },
-                    { rank: "B", abilities: ["強気", "禁呪", "Fストーム", "Iストーム", "Lストーム"] },
+                    { rank: "B", abilities: ["強気", "禁呪"] },
                 ],
                 traits: [
                     "相手から攻撃を受けた時に発動する能力",
