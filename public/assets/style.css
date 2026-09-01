@@ -1,22 +1,28 @@
-/* ニカ 編成講座 — 非公式ファン攻略 */
+/* ニカ 編成講座 */
 
 :root {
-    --ink: #12141c;
-    --ink-2: #5a6172;
-    --ink-3: #8b91a3;
-    --line: #e3e6ee;
+    --ink: #14162b;
+    --ink-2: #585e7d;
+    --ink-3: #8b90ab;
+    --line: #e5e8f6;
     --paper: #ffffff;
-    --wash: #f5f7fa;
-    --stage: #eef1f7;
-    --red: #d94436;
-    --green: #1f9a52;
-    --blue: #2a6ce0;
-    --violet: #6b4bd8;
+    --wash: #f4f6fd;
+    --stage: #eef1fc;
+    --accent: #6b4bd8;
+    --red: #e8443a;
+    --green: #17a05a;
+    --blue: #2f74e8;
+    --amber: #f2971b;
     --slot: 150px;
     --display: "Murecho", "Hiragino Sans", system-ui, sans-serif;
     --body: "IBM Plex Sans JP", "Hiragino Sans", system-ui, sans-serif;
-    --shadow: 0 1px 2px rgba(18, 20, 28, .04), 0 14px 30px -18px rgba(18, 20, 28, .3);
+    --shadow: 0 1px 2px rgba(20, 22, 43, .04), 0 16px 32px -20px rgba(20, 22, 43, .28);
 }
+
+[data-accent="red"] { --tone: var(--red); }
+[data-accent="green"] { --tone: var(--green); }
+[data-accent="blue"] { --tone: var(--blue); }
+[data-accent="amber"] { --tone: var(--amber); }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -25,7 +31,11 @@ html { -webkit-text-size-adjust: 100%; background: var(--wash); }
 body {
     margin: 0;
     padding: 0 20px 80px;
-    background: var(--wash);
+    background:
+        radial-gradient(760px 420px at 12% -60px, rgba(107, 75, 216, .13), transparent 70%),
+        radial-gradient(680px 380px at 88% 40px, rgba(47, 116, 232, .12), transparent 70%),
+        var(--wash);
+    background-repeat: no-repeat;
     color: var(--ink);
     font-family: var(--body);
     font-size: 16px;
@@ -37,7 +47,7 @@ img { display: block; }
 
 .card {
     border: 1px solid var(--line);
-    border-radius: 14px;
+    border-radius: 18px;
     background: var(--paper);
     box-shadow: var(--shadow);
 }
@@ -47,32 +57,12 @@ img { display: block; }
 .masthead {
     max-width: 960px;
     margin: 0 auto;
-    padding: 88px 0 8px;
-}
-
-.eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 0 0 22px;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: .2em;
-    color: var(--ink-3);
-}
-
-.tag-unofficial {
-    padding: 4px 11px;
-    border-radius: 999px;
-    background: var(--ink);
-    color: var(--paper);
-    font-size: 11px;
-    letter-spacing: .14em;
+    padding: 92px 0 8px;
 }
 
 h1 {
     margin: 0;
-    max-width: 14em;
+    max-width: 15em;
     font-family: var(--display);
     font-size: clamp(38px, 7.5vw, 74px);
     font-weight: 800;
@@ -82,40 +72,78 @@ h1 {
 
 .lede {
     max-width: 30em;
-    margin: 24px 0 0;
+    margin: 22px 0 0;
     color: var(--ink-2);
     font-size: 16px;
-    line-height: 1.95;
 }
 
 .section {
     max-width: 960px;
     margin: 0 auto;
-    padding-top: 96px;
+    padding-top: 92px;
 }
 
 .sec-head {
     display: flex;
-    align-items: baseline;
-    gap: 16px;
-    margin: 0;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--line);
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 26px;
     font-family: var(--display);
     font-size: clamp(21px, 3.4vw, 30px);
     font-weight: 800;
     letter-spacing: -.02em;
 }
 
+.sec-head::before {
+    content: "";
+    flex: none;
+    width: 12px;
+    height: 26px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--accent), #9b7bff);
+}
+
 .sec-note {
-    margin: 14px 0 0;
+    margin: -14px 0 26px;
     color: var(--ink-2);
     font-size: 14px;
 }
 
-.sec-head + .overview-grid,
-.sec-head + .jou-list,
-.sec-note + .tabs { margin-top: 34px; }
+/* ───────── 方針 ───────── */
+
+.policy { padding: 26px 28px; }
+
+.policy-body {
+    margin: 0;
+    font-size: 15.5px;
+    line-height: 1.95;
+}
+
+.policy-points {
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.policy-points:empty { display: none; }
+
+.policy-points li {
+    position: relative;
+    padding-left: 22px;
+    color: var(--ink-2);
+    font-size: 14.5px;
+}
+
+.policy-points li::before {
+    content: "";
+    position: absolute;
+    top: 13px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+}
 
 /* ───────── 部隊カード（このページの主役パーツ） ───────── */
 
@@ -135,8 +163,8 @@ h1 {
     align-items: center;
     min-height: var(--slot);
     padding: 12px 6px 10px;
-    border-radius: 10px;
-    background: linear-gradient(180deg, #f8fafd 0%, var(--stage) 100%);
+    border-radius: 14px;
+    background: linear-gradient(180deg, #fbfcff 0%, var(--stage) 100%);
 }
 
 .slot::after {
@@ -148,7 +176,7 @@ h1 {
     height: 8px;
     transform: translateX(-50%);
     border-radius: 50%;
-    background: radial-gradient(closest-side, rgba(18, 20, 28, .18), transparent);
+    background: radial-gradient(closest-side, rgba(20, 22, 43, .16), transparent);
 }
 
 .slot-sprite {
@@ -164,7 +192,7 @@ h1 {
     height: 42px;
     margin-bottom: 10px;
     border: 1px dashed var(--ink-3);
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .slot-name {
@@ -174,14 +202,13 @@ h1 {
     font-weight: 600;
     line-height: 1.5;
     text-align: center;
-    letter-spacing: -.01em;
 }
 
 .slot-el {
     display: block;
     margin-top: 1px;
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: .08em;
 }
 
@@ -202,7 +229,7 @@ h1 {
 
 .gauge {
     flex: 1;
-    height: 7px;
+    height: 8px;
     border-radius: 999px;
     background: var(--line);
     overflow: hidden;
@@ -211,19 +238,18 @@ h1 {
 .gauge-fill {
     height: 100%;
     border-radius: 999px;
-    background: var(--ink);
+    background: linear-gradient(90deg, #34d07f, #17a05a);
 }
 
 .chip-el {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    padding: 4px 12px 4px 10px;
-    border: 1px solid var(--line);
+    padding: 4px 13px 4px 11px;
     border-radius: 999px;
+    background: var(--stage);
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .04em;
+    font-weight: 700;
     color: var(--ink);
 }
 
@@ -232,18 +258,17 @@ h1 {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: currentColor;
 }
 
 .chip-el.el-red::before { background: var(--red); }
 .chip-el.el-green::before { background: var(--green); }
 .chip-el.el-blue::before { background: var(--blue); }
-.chip-el.el-black::before { background: var(--violet); }
+.chip-el.el-black::before { background: var(--accent); }
 
 .slot-el.el-red { color: var(--red); }
 .slot-el.el-green { color: var(--green); }
 .slot-el.el-blue { color: var(--blue); }
-.slot-el.el-black { color: var(--violet); }
+.slot-el.el-black { color: var(--accent); }
 
 /* ───────── 見取り図 ───────── */
 
@@ -263,7 +288,7 @@ h1 {
 
 .callouts li {
     position: relative;
-    padding: 0 0 24px 44px;
+    padding: 0 0 24px 46px;
     counter-increment: callout;
 }
 
@@ -272,24 +297,24 @@ h1 {
 .callouts li::before {
     content: counter(callout);
     position: absolute;
-    top: 5px;
+    top: 4px;
     left: 0;
     display: grid;
     place-items: center;
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    background: var(--ink);
+    background: linear-gradient(180deg, var(--accent), #8a6cf0);
     color: var(--paper);
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
 }
 
 .callout-label {
     margin: 0;
     font-family: var(--display);
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 800;
     line-height: 1.5;
     letter-spacing: -.02em;
 }
@@ -313,23 +338,26 @@ h1 {
 }
 
 .jou {
-    position: relative;
     display: flex;
     flex-direction: column;
     padding: 26px 24px 24px;
-    overflow: hidden;
 }
 
 .jou-no {
+    display: inline-block;
+    align-self: flex-start;
     margin: 0;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .2em;
-    color: var(--ink-3);
+    padding: 3px 12px;
+    border-radius: 999px;
+    background: rgba(107, 75, 216, .12);
+    color: var(--accent);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .1em;
 }
 
 .jou-head {
-    margin: 8px 0 0;
+    margin: 12px 0 0;
     font-family: var(--display);
     font-size: 21px;
     font-weight: 800;
@@ -350,11 +378,55 @@ h1 {
     min-height: 158px;
     margin: auto 0 0;
     padding: 16px;
-    border-radius: 10px;
+    border-radius: 14px;
     background: var(--stage);
 }
 
-/* 図: 型の選択 */
+/* 図: 重複不可 */
+.fig-stack { width: 100%; text-align: center; }
+
+.fig-stack-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.fig-stack-chip {
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--paper);
+    box-shadow: 0 2px 6px rgba(20, 22, 43, .08);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.fig-stack-chip.is-waste {
+    position: relative;
+    background: #e7e9f4;
+    box-shadow: none;
+    color: var(--ink-3);
+}
+
+.fig-stack-chip.is-waste::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    width: 84%;
+    height: 2px;
+    background: var(--red);
+}
+
+.fig-stack-plus { color: var(--ink-3); font-size: 13px; }
+
+.fig-stack-note {
+    margin: 14px 0 0;
+    color: var(--ink-2);
+    font-size: 12px;
+}
+
+/* 図: 方向性 */
 .fig-types {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -364,7 +436,7 @@ h1 {
 
 .fig-type {
     padding: 9px 4px;
-    border-radius: 7px;
+    border-radius: 10px;
     background: var(--paper);
     color: var(--ink-3);
     font-size: 12px;
@@ -373,49 +445,18 @@ h1 {
 }
 
 .fig-type.is-on {
-    background: var(--ink);
+    background: linear-gradient(180deg, var(--accent), #8a6cf0);
     color: var(--paper);
+}
+
+.fig-type.is-etc {
+    grid-column: 1 / -1;
+    background: none;
+    box-shadow: inset 0 0 0 1px var(--line);
 }
 
 /* 図: 三竦み */
 .fig-tri { display: block; width: 100%; max-width: 210px; height: auto; }
-
-/* 図: 噛み合い */
-.fig-synergy {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-}
-
-.fig-row { margin: 0; }
-
-.fig-link {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    flex-wrap: wrap;
-}
-
-.fig-link-chip {
-    padding: 5px 11px;
-    border-radius: 999px;
-    background: var(--paper);
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.fig-link-arrow {
-    color: var(--ink-3);
-    font-size: 12px;
-}
-
-.fig-link-note {
-    margin: 5px 0 0;
-    color: var(--ink-2);
-    font-size: 12px;
-    line-height: 1.6;
-}
 
 /* ───────── タブ ───────── */
 
@@ -425,19 +466,18 @@ h1 {
     gap: 4px;
     padding: 5px;
     border-radius: 999px;
-    background: #e9edf4;
+    background: #e8ebf9;
 }
 
 .tab {
-    padding: 11px 4px;
+    padding: 12px 4px;
     border: 0;
     border-radius: 999px;
     background: none;
     color: var(--ink-2);
     font-family: var(--body);
     font-size: clamp(12.5px, 2.4vw, 14.5px);
-    font-weight: 600;
-    letter-spacing: -.01em;
+    font-weight: 700;
     cursor: pointer;
     transition: background .16s ease, color .16s ease;
 }
@@ -445,9 +485,9 @@ h1 {
 .tab:hover { color: var(--ink); }
 
 .tab[aria-selected="true"] {
-    background: var(--paper);
-    box-shadow: 0 1px 2px rgba(18, 20, 28, .1), 0 4px 12px -6px rgba(18, 20, 28, .35);
-    color: var(--ink);
+    background: var(--tone);
+    box-shadow: 0 4px 14px -6px var(--tone);
+    color: var(--paper);
 }
 
 .tab:focus-visible {
@@ -462,10 +502,12 @@ h1 {
 .panel-lead {
     max-width: 36em;
     margin: 0 0 30px;
+    padding-left: 16px;
+    border-left: 4px solid var(--tone);
     font-family: var(--display);
     font-size: clamp(17px, 2.6vw, 21px);
     font-weight: 700;
-    line-height: 1.65;
+    line-height: 1.6;
     letter-spacing: -.025em;
 }
 
@@ -474,9 +516,9 @@ h1 {
     align-items: center;
     gap: 12px;
     margin: 0 0 16px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .18em;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .16em;
     color: var(--ink-3);
 }
 
@@ -487,7 +529,8 @@ h1 {
     background: var(--line);
 }
 
-.card + .block-head { margin-top: 48px; }
+.card + .block-head,
+.match-grid + .block-head { margin-top: 44px; }
 
 /* ───────── Tier表 ───────── */
 
@@ -495,7 +538,7 @@ h1 {
 
 .tier-row {
     display: grid;
-    grid-template-columns: 46px 1fr;
+    grid-template-columns: 48px 1fr;
     gap: 18px;
     align-items: center;
     padding: 16px 0;
@@ -506,19 +549,18 @@ h1 {
 .rank {
     display: grid;
     place-items: center;
-    height: 34px;
-    border: 1px solid transparent;
-    border-radius: 9px;
+    height: 36px;
+    border-radius: 12px;
+    color: var(--paper);
     font-family: var(--display);
     font-size: 15px;
     font-weight: 800;
-    letter-spacing: .02em;
 }
 
-.rank-s { background: var(--ink); color: var(--paper); }
-.rank-a { background: #767d90; color: var(--paper); }
-.rank-b { border-color: var(--line); background: var(--paper); color: var(--ink-2); }
-.rank-c { border-color: var(--line); background: var(--paper); color: var(--ink-3); }
+.rank-s { background: linear-gradient(180deg, #ffb443, var(--amber)); }
+.rank-a { background: linear-gradient(180deg, #8a6cf0, var(--accent)); }
+.rank-b { background: linear-gradient(180deg, #5f93f0, var(--blue)); }
+.rank-c { background: var(--ink-3); }
 
 .chips {
     display: flex;
@@ -530,17 +572,43 @@ h1 {
 }
 
 .chip-ability {
-    padding: 7px 14px;
-    border: 1px solid var(--line);
+    padding: 7px 15px;
     border-radius: 999px;
-    background: var(--wash);
+    background: var(--stage);
     font-size: 13.5px;
     font-weight: 600;
-    letter-spacing: -.01em;
     cursor: help;
 }
 
-.chip-ability[data-detail=""] { cursor: default; }
+/* ───────── 相性が良いスキル・タロット ───────── */
+
+.match-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.match { padding: 20px 22px 22px; }
+
+.match-head {
+    margin: 0 0 14px;
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -.02em;
+}
+
+.chip-match {
+    padding: 7px 15px;
+    border-radius: 999px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: help;
+}
+
+.chip-skill { background: rgba(47, 116, 232, .12); color: #1f5bc4; }
+
+.chip-tarot { background: rgba(242, 151, 27, .16); color: #a3620a; }
 
 /* ───────── 編成例 ───────── */
 
@@ -577,19 +645,7 @@ h1 {
     line-height: 1.85;
 }
 
-/* ───────── 補足・フッター ───────── */
-
-.draft {
-    max-width: 960px;
-    margin: 20px auto 0;
-    padding: 10px 16px;
-    border: 1px dashed var(--ink-3);
-    border-radius: 10px;
-    color: var(--ink-2);
-    font-size: 12.5px;
-    letter-spacing: .04em;
-    text-align: center;
-}
+/* ───────── フッター ───────── */
 
 .footer {
     max-width: 960px;
@@ -603,7 +659,7 @@ h1 {
 
 .footer p { margin: 0 0 6px; }
 
-.footer a { color: var(--ink); }
+.footer a { color: var(--accent); }
 
 .missing { color: var(--red); font-size: 12px; }
 
@@ -612,6 +668,7 @@ h1 {
 @media (max-width: 900px) {
     .overview-grid,
     .jou-list,
+    .match-grid,
     .formations { grid-template-columns: 1fr; }
 
     .overview-grid { gap: 28px; }
@@ -628,9 +685,11 @@ h1 {
 
     .section { padding-top: 64px; }
 
-    .tabs { grid-template-columns: repeat(2, 1fr); border-radius: 18px; }
+    .tabs { grid-template-columns: repeat(2, 1fr); border-radius: 22px; }
 
-    .tab { border-radius: 14px; }
+    .tab { border-radius: 18px; }
+
+    .policy { padding: 20px 20px 22px; }
 
     .party-slots { gap: 6px; }
 
@@ -642,7 +701,7 @@ h1 {
 
     .tier { padding: 4px 16px 6px; }
 
-    .tier-row { grid-template-columns: 40px 1fr; gap: 12px; }
+    .tier-row { grid-template-columns: 42px 1fr; gap: 12px; }
 
     :root { --slot: 118px; }
 }

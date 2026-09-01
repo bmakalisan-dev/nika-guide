@@ -30,7 +30,7 @@ const collectImageMap = async () => {
     for (const m of bundle.matchAll(/"?([^\s{},:"()]+)"?\s*:\s*[A-Za-z_$][\w$]*\("(\d+\.gif)"\)/g)) {
         if (!map.has(m[1])) map.set(m[1], m[2]);
     }
-    if (map.size === 0) throw new Error("画像の対応表が取れなかった（バンドルの形が変わった可能性）");
+    if (map.size === 0) throw new Error("画像の対応表が取れなかった（配信物の形が変わった可能性）");
     return map;
 };
 
@@ -47,9 +47,10 @@ for (const monster of master.monsterList) {
     monsters.push([monster.name, { img, element: monster.element, kibo: monster.kiboName, specialties: monster.specialtyNameList }]);
 }
 
-const specialties = master.monsterSpecialtyList
-    .map((specialty) => [specialty.name, specialty.detail ?? ""])
-    .sort((a, b) => a[0].localeCompare(b[0], "ja"));
+const byName = (a, b) => a[0].localeCompare(b[0], "ja");
+const specialties = master.monsterSpecialtyList.map((s) => [s.name, s.detail ?? ""]).sort(byName);
+const skills = master.skillList.map((s) => [s.name, { sp: s.sp, detail: s.detail ?? "" }]).sort(byName);
+const tarots = master.tarotList.map((t) => [t.name, { upright: t.upright ?? "", reversed: t.reversed ?? "" }]).sort(byName);
 
 // 掲載するモンスターが使う画像だけ取得する
 const imageDest = join(root, "public/images/monster");
@@ -62,13 +63,18 @@ for (const file of usedImages) {
     writeFileSync(join(imageDest, file), Buffer.from(await res.arrayBuffer()));
 }
 
+const json = (entries) => JSON.stringify(Object.fromEntries(entries), null, 4);
 const body = `// 自動生成ファイル。直接編集しない。
-const MONSTERS = ${JSON.stringify(Object.fromEntries(monsters), null, 4)};
+const MONSTERS = ${json(monsters)};
 
-const SPECIALTIES = ${JSON.stringify(Object.fromEntries(specialties), null, 4)};
+const SPECIALTIES = ${json(specialties)};
+
+const SKILLS = ${json(skills)};
+
+const TAROTS = ${json(tarots)};
 `;
 mkdirSync(join(root, "public/data"), { recursive: true });
 writeFileSync(join(root, "public/data/generated.js"), body, "utf8");
 
-console.log(`monsters: ${monsters.length} / specialties: ${specialties.length} / images: ${usedImages.length}`);
+console.log(`monsters: ${monsters.length} / specialties: ${specialties.length} / skills: ${skills.length} / tarots: ${tarots.length} / images: ${usedImages.length}`);
 if (missing.length > 0) console.log(`画像が見つからなかったモンスター: ${missing.join(", ")}`);

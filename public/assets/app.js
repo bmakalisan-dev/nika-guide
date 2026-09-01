@@ -1,4 +1,4 @@
-// GUIDE（文面）と MONSTERS / SPECIALTIES（自動生成データ）からページを描く。
+// GUIDE（文面）と MONSTERS / SPECIALTIES / SKILLS / TAROTS（生成データ）からページを描く。
 
 const ELEMENT_LABEL = { red: "赤", green: "緑", blue: "青", black: "黒" };
 
@@ -21,7 +21,7 @@ const partyElement = (names) => {
 
 const elementChip = (element) => {
     const chip = el("span", `chip-el el-${element}`, ELEMENT_LABEL[element]);
-    chip.title = element === "black" ? "3色編成は黒（タロット「太陽」正位置が必要）" : "部隊属性";
+    chip.title = element === "black" ? "3色編成は黒（太陽タロットが必要）" : "部隊属性";
     return chip;
 };
 
@@ -43,7 +43,7 @@ const slot = (name) => {
     return box;
 };
 
-/** 3体スロット＋共有HP＋部隊属性。このページの基本パーツ。 */
+/** 3体スロット＋合算HP＋部隊属性。このページの基本パーツ。 */
 const partyWindow = (names, { showMeter = true, framed = true } = {}) => {
     const win = el("div", framed ? "card party" : "party");
     const slots = el("div", "party-slots");
@@ -64,47 +64,51 @@ const partyWindow = (names, { showMeter = true, framed = true } = {}) => {
 };
 
 const FIGURES = {
+    // 重複不可の能力を2体に持たせても効果は1つ分
+    stack: () => {
+        const fig = el("div", "fig-stack");
+        const row = el("div", "fig-stack-row");
+        row.append(el("span", "fig-stack-chip", "甲殻"));
+        row.append(el("span", "fig-stack-plus", "＋"));
+        row.append(el("span", "fig-stack-chip is-waste", "甲殻"));
+        fig.append(row, el("p", "fig-stack-note", "2体目は効果が乗らない"));
+        return fig;
+    },
+
     types: () => {
         const fig = el("div", "fig-types");
-        for (const label of ["速度型", "防御型", "攻撃型", "クリティカル型"]) {
-            fig.append(el("div", `fig-type${label === "速度型" ? " is-on" : ""}`, label));
+        for (const label of ["速度", "防御", "攻撃", "クリティカル"]) {
+            fig.append(el("div", `fig-type${label === "速度" ? " is-on" : ""}`, label));
         }
+        fig.append(el("div", "fig-type is-etc", "など"));
         return fig;
     },
 
     triangle: () => {
         const svg = `<svg class="fig-tri" viewBox="0 0 200 148" role="img" aria-label="赤は緑に強く、緑は青に強く、青は赤に強い">
             <defs><marker id="tri-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-                <path d="M0 0 L10 5 L0 10 z" fill="#8b91a3"/></marker></defs>
-            <g fill="none" stroke="#8b91a3" stroke-width="1.5" marker-end="url(#tri-arrow)">
+                <path d="M0 0 L10 5 L0 10 z" fill="#a9aecb"/></marker></defs>
+            <g fill="none" stroke="#a9aecb" stroke-width="2" marker-end="url(#tri-arrow)">
                 <path d="M115 33 L152 92"/><path d="M139 117 L61 117"/><path d="M48 92 L85 33"/>
             </g>
             <g font-family="Murecho, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#ffffff">
-                <circle cx="100" cy="22" r="18" fill="#d94436"/><text x="100" y="28">赤</text>
-                <circle cx="166" cy="120" r="18" fill="#1f9a52"/><text x="166" y="126">緑</text>
-                <circle cx="34" cy="120" r="18" fill="#2a6ce0"/><text x="34" y="126">青</text>
+                <circle cx="100" cy="22" r="18" fill="#e8443a"/><text x="100" y="28">赤</text>
+                <circle cx="166" cy="120" r="18" fill="#17a05a"/><text x="166" y="126">緑</text>
+                <circle cx="34" cy="120" r="18" fill="#2f74e8"/><text x="34" y="126">青</text>
             </g>
         </svg>`;
         const holder = el("div");
         holder.innerHTML = svg;
         return holder.firstElementChild;
     },
+};
 
-    synergy: () => {
-        const fig = el("div", "fig-synergy");
-        const links = [
-            ["疾風", "急襲", "初手が早い → 先制が続く"],
-            ["車輪", "渾身", "クリ率が上がる → 1発が重い"],
-        ];
-        for (const [from, to, note] of links) {
-            const row = el("div", "fig-row");
-            const link = el("div", "fig-link");
-            link.append(el("span", "fig-link-chip", from), el("span", "fig-link-arrow", "＋"), el("span", "fig-link-chip", to));
-            row.append(link, el("p", "fig-link-note", note));
-            fig.append(row);
-        }
-        return fig;
-    },
+const renderPolicy = () => {
+    const { head, body, points } = GUIDE.policy;
+    document.querySelector("#policy-head .sec-text").textContent = head;
+    document.getElementById("policy-body").textContent = body;
+    const list = document.getElementById("policy-points");
+    for (const point of points ?? []) list.append(el("li", null, point));
 };
 
 const renderOverview = () => {
@@ -137,7 +141,7 @@ const renderPrinciples = () => {
 };
 
 const tierBoard = (tiers) => {
-    const win = el("div", "card tier");
+    const board = el("div", "card tier");
     for (const row of tiers) {
         const line = el("div", "tier-row");
         line.append(el("div", `rank rank-${row.rank.toLowerCase()}`, row.rank));
@@ -145,15 +149,38 @@ const tierBoard = (tiers) => {
         for (const ability of row.abilities) {
             const chip = el("li", "chip-ability", ability);
             const detail = SPECIALTIES[ability] ?? "";
-            chip.dataset.detail = detail;
             if (detail) chip.title = detail;
             else chip.append(el("span", "missing", " ?"));
             chips.append(chip);
         }
         line.append(chips);
-        win.append(line);
+        board.append(line);
     }
-    return win;
+    return board;
+};
+
+/** 相性が良いスキル・タロットの並び。名前だけの文字列でも { name, position } でも受ける。 */
+const matchList = (entries, kind) => {
+    const list = el("ul", "chips chips-match");
+    for (const entry of entries ?? []) {
+        const name = typeof entry === "string" ? entry : entry.name;
+        const position = typeof entry === "string" ? null : entry.position;
+        const chip = el("li", `chip-match chip-${kind}`, position ? `${name}（${position}）` : name);
+
+        if (kind === "skill") {
+            const skill = SKILLS[name];
+            if (skill) chip.title = `SP${skill.sp}｜${skill.detail}`;
+            else chip.append(el("span", "missing", " ?"));
+        } else {
+            const tarot = TAROTS[name];
+            if (!tarot) chip.append(el("span", "missing", " ?"));
+            else if (position === "正") chip.title = tarot.upright;
+            else if (position === "逆") chip.title = tarot.reversed;
+            else chip.title = `正: ${tarot.upright}／逆: ${tarot.reversed}`;
+        }
+        list.append(chip);
+    }
+    return list;
 };
 
 const renderTypes = () => {
@@ -170,6 +197,7 @@ const renderTypes = () => {
         tab.setAttribute("role", "tab");
         tab.setAttribute("aria-controls", `panel-${type.id}`);
         tab.setAttribute("aria-selected", String(index === 0));
+        tab.dataset.accent = type.accent ?? "blue";
         tab.tabIndex = index === 0 ? 0 : -1;
         tablist.append(tab);
 
@@ -177,14 +205,30 @@ const renderTypes = () => {
         panel.id = `panel-${type.id}`;
         panel.setAttribute("role", "tabpanel");
         panel.setAttribute("aria-labelledby", tab.id);
+        panel.dataset.accent = type.accent ?? "blue";
         panel.tabIndex = 0;
         panel.hidden = index !== 0;
 
         panel.append(el("p", "panel-lead", type.lead));
         panel.append(el("h3", "block-head", "特殊能力 Tier"));
         panel.append(tierBoard(type.tiers));
-        panel.append(el("h3", "block-head", "代表的な編成"));
 
+        if (type.skills?.length || type.tarots?.length) {
+            const match = el("div", "match-grid");
+            if (type.skills?.length) {
+                const box = el("div", "card match");
+                box.append(el("h3", "match-head", "相性が良いスキル"), matchList(type.skills, "skill"));
+                match.append(box);
+            }
+            if (type.tarots?.length) {
+                const box = el("div", "card match");
+                box.append(el("h3", "match-head", "相性が良いタロット"), matchList(type.tarots, "tarot"));
+                match.append(box);
+            }
+            panel.append(match);
+        }
+
+        panel.append(el("h3", "block-head", "代表的な編成"));
         const formations = el("div", "formations");
         for (const item of type.formations) {
             const card = el("div", "card formation");
@@ -220,10 +264,9 @@ const renderTypes = () => {
 };
 
 const renderShell = () => {
-    document.title = `${GUIDE.site.title}｜非公式ファン攻略`;
+    document.title = GUIDE.site.title;
     document.getElementById("site-title").textContent = GUIDE.site.title;
     document.getElementById("site-lede").textContent = GUIDE.site.lede;
-    document.getElementById("draft").hidden = !GUIDE.draft;
 
     document.getElementById("footer-disclaimer").textContent = GUIDE.footer.disclaimer;
     const credit = document.getElementById("footer-credit");
@@ -237,6 +280,7 @@ const renderShell = () => {
 };
 
 renderShell();
+renderPolicy();
 renderOverview();
 renderPrinciples();
 renderTypes();
