@@ -217,6 +217,16 @@ const renderTypes = () => {
         panel.hidden = index !== 0;
 
         panel.append(el("p", "panel-lead", type.lead));
+
+        if (type.traits?.length) {
+            const box = el("div", "card traits");
+            box.append(el("h3", "traits-head", "相性が良い特殊能力"));
+            const list = el("ul", "traits-list");
+            for (const trait of type.traits) list.append(el("li", null, trait));
+            box.append(list);
+            panel.append(box);
+        }
+
         panel.append(el("h3", "block-head", "使用頻度 Tier"));
         panel.append(tierBoard(type.tiers));
         if (GUIDE.types.tierLegend) {

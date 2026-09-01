@@ -757,3 +757,50 @@ h1 {
     background: linear-gradient(90deg, var(--accent), #8a6cf0);
     color: var(--paper);
 }
+
+/* ───────── 相性が良い特殊能力 ───────── */
+
+.traits {
+    padding: 20px 24px 22px;
+    margin-bottom: 44px;
+}
+
+.traits-head {
+    margin: 0 0 12px;
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -.02em;
+}
+
+.traits-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.traits-list li {
+    position: relative;
+    padding-left: 20px;
+    color: var(--ink-2);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.traits-list li::before {
+    content: "";
+    position: absolute;
+    top: 11px;
+    left: 2px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--tone);
+}
+
+@media (max-width: 640px) {
+    .traits-list { grid-template-columns: 1fr; }
+}
