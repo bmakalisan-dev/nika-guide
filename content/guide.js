@@ -61,7 +61,6 @@ const GUIDE = {
     types: {
         head: "タイプ別 Tierと編成",
         note: "Tierは特殊能力の使用頻度。編成例はその型の組み方の見本。",
-        tierLegend: "六角形の枠は重複不可。1体までにする。",
         items: [
             {
                 id: "speed",

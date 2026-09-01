@@ -50,7 +50,6 @@ README.md
 - `overview` … 見取り図に出すモンスター3体と、番号つき解説3点
 - `principles.items` … 三か条。`figure` は `stack`（重複不可）/ `types`（方向性）/ `kibo`（規模の段階）/ `triangle`（三竦み）のいずれか
 - `types.items` … タイプごとの `traits`（相性が良い特殊能力の傾向）、`tiers`（rank と特殊能力名）、`skills`・`tarots`（相性が良いもの。名前だけを並べる）、`formations`（モンスター3体・狙い。モンスターの特殊能力は自動で表示される）。`accent` は `red` / `green` / `blue` / `amber`
-- `types.tierLegend` … Tierの下に出す凡例
 - `footer` … 免責文（`credit` を入れればクレジット行も出せる）
 
 決まりごと:

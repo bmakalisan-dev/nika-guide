@@ -222,10 +222,6 @@ const typesSection = () => {
                 ? `<div class="card traits"><h3 class="traits-head">相性が良い特殊能力</h3><ul class="traits-list">${type.traits.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>`
                 : "";
 
-            const legend = GUIDE.types.tierLegend
-                ? `<p class="tier-legend"><span class="chip-ability is-nonstack legend-sample">重複不可</span><span>${esc(GUIDE.types.tierLegend)}</span></p>`
-                : "";
-
             const match =
                 type.skills?.length || type.tarots?.length
                     ? [
@@ -254,7 +250,6 @@ const typesSection = () => {
                 traits,
                 `<h3 class="block-head">使用頻度 Tier</h3>`,
                 tierBoard(type.tiers),
-                legend,
                 match,
                 `<h3 class="block-head">編成例</h3>`,
                 `<div class="formations">${formations}</div>`,
