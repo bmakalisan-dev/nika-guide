@@ -40,7 +40,7 @@ const GUIDE = {
             {
                 no: "第二条",
                 head: "方向性を決める",
-                body: "速度・防御・攻撃・クリティカルなど、どれか1つに寄せた部隊が強い。基本はタロットに応じて決定。スキルも選びやすくなる（迅速・猛攻・鉄壁）。能力同士の相乗効果も狙える（攻撃力上昇と威圧）。",
+                body: "速度・防御・火力・クリティカルなど、どれか1つに寄せた部隊が強い。基本はタロットに応じて決定。スキルも選びやすくなる（迅速・猛攻・鉄壁）。能力同士の相乗効果も狙える（攻撃力上昇と威圧）。",
                 figure: "types",
             },
             {
@@ -54,7 +54,7 @@ const GUIDE = {
 
     types: {
         head: "タイプ別 Tierと編成",
-        note: "Tierは特殊能力の評価。編成例はその型の組み方の見本。",
+        note: "Tierは特殊能力の使用頻度。編成例はその型の組み方の見本。",
         tierLegend: "六角形の枠は重複不可。1体までにする。",
         items: [
             {
@@ -63,9 +63,9 @@ const GUIDE = {
                 accent: "blue",
                 lead: "速度を上げて手数で押す型。もともと行動が回りやすい。",
                 tiers: [
-                    { rank: "S", abilities: ["疾風", "急襲", "指揮"] },
-                    { rank: "A", abilities: ["連撃", "精密攻撃"] },
-                    { rank: "B", abilities: ["飛翔", "水陸両用"] },
+                    { rank: "S", abilities: ["急襲", "魅了"] },
+                    { rank: "A", abilities: ["石化", "邪眼", "追撃"] },
+                    { rank: "B", abilities: ["ダメージ追加", "吸血", "格闘コンボ", "咆哮"] },
                 ],
                 skills: ["迅速", "攻城"],
                 tarots: ["戦車"],
@@ -80,9 +80,9 @@ const GUIDE = {
                 accent: "green",
                 lead: "殴られながら固くなる型。長期戦に持ち込んで勝つ。",
                 tiers: [
-                    { rank: "S", abilities: ["守護", "甲殻"] },
-                    { rank: "A", abilities: ["大盾Ⅰ", "ダメージ減少", "見切り"] },
-                    { rank: "B", abilities: ["カウンター", "強気", "再生"] },
+                    { rank: "S", abilities: ["甲殻", "カウンター"] },
+                    { rank: "A", abilities: ["大盾Ⅰ", "大盾Ⅱ", "シールド", "巨人"] },
+                    { rank: "B", abilities: ["強気", "禁呪", "Fストーム", "Iストーム", "Lストーム"] },
                 ],
                 skills: ["鉄壁"],
                 tarots: ["皇帝"],
@@ -93,13 +93,13 @@ const GUIDE = {
             },
             {
                 id: "attack",
-                label: "攻撃型",
+                label: "火力型",
                 accent: "red",
                 lead: "1発の重さで押す型。倍率が乗る能力を集める。",
                 tiers: [
-                    { rank: "S", abilities: ["号令", "狂戦士"] },
-                    { rank: "A", abilities: ["突撃", "闘争心", "ダメージ追加"] },
-                    { rank: "B", abilities: ["咆哮", "兜割り", "吸血"] },
+                    { rank: "S", abilities: ["威圧", "号令"] },
+                    { rank: "A", abilities: ["擬態", "射撃"] },
+                    { rank: "B", abilities: ["トライデント", "突撃"] },
                 ],
                 skills: ["猛攻", "撃滅"],
                 tarots: ["愚者"],
@@ -114,9 +114,9 @@ const GUIDE = {
                 accent: "amber",
                 lead: "クリティカル率と倍率を両方積む型。噛み合えば最大火力。",
                 tiers: [
-                    { rank: "S", abilities: ["車輪", "渾身"] },
-                    { rank: "A", abilities: ["精密攻撃", "急襲"] },
-                    { rank: "B", abilities: ["弱肉強食", "邪眼"] },
+                    { rank: "S", abilities: ["願い事"] },
+                    { rank: "A", abilities: ["渾身", "精密攻撃"] },
+                    { rank: "B", abilities: ["武器砕き"] },
                 ],
                 skills: ["会心"],
                 tarots: ["運命の輪", "正義"],

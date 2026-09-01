@@ -89,7 +89,7 @@ const FIGURES = {
 
     types: () => {
         const fig = el("div", "fig-types");
-        for (const label of ["速度", "防御", "攻撃", "クリティカル"]) {
+        for (const label of ["速度", "防御", "火力", "クリティカル"]) {
             fig.append(el("div", `fig-type${label === "速度" ? " is-on" : ""}`, label));
         }
         fig.append(el("div", "fig-type is-etc", "など"));
@@ -217,7 +217,7 @@ const renderTypes = () => {
         panel.hidden = index !== 0;
 
         panel.append(el("p", "panel-lead", type.lead));
-        panel.append(el("h3", "block-head", "特殊能力 Tier"));
+        panel.append(el("h3", "block-head", "使用頻度 Tier"));
         panel.append(tierBoard(type.tiers));
         if (GUIDE.types.tierLegend) {
             const legend = el("p", "tier-legend");
