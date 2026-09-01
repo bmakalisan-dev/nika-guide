@@ -39,23 +39,40 @@ const elementChip = (element) => {
     return `<span class="chip-el el-${element}" title="${esc(title)}">${ELEMENT_LABEL[element]}</span>`;
 };
 
-const slot = (name) => {
+/** 特殊能力のチップ。重複不可はゲーム内と同じ六角形にする。 */
+const abilityChip = (name, { tag = "li", className = "chip-ability" } = {}) => {
+    const specialty = SPECIALTIES[name];
+    if (!specialty) {
+        errors.push(`特殊能力「${name}」がデータに無い`);
+        return `<${tag} class="${className}">${esc(name)}</${tag}>`;
+    }
+    const nonStackable = !specialty.stackable;
+    const title = specialty.detail + (nonStackable ? "\n部隊単位の能力（1体分のみ有効）" : "");
+    return `<${tag} class="${className}${nonStackable ? " is-nonstack" : ""}" title="${esc(title)}">${esc(name)}</${tag}>`;
+};
+
+const slot = (name, { showAbilities = false } = {}) => {
     const data = MONSTERS[name];
     if (!data) {
         errors.push(`モンスター「${name}」がデータに無い`);
-        return `<div class="slot"><div class="slot-empty"></div><p class="slot-name">${esc(name)}</p></div>`;
+        return `<div class="slot"><div class="slot-stage"><div class="slot-empty"></div></div><p class="slot-name">${esc(name)}</p></div>`;
     }
     const { w, h } = gifSize(data.img);
+    const abilities =
+        showAbilities && data.specialties.length > 0
+            ? `<div class="slot-abilities">${data.specialties.map((a) => abilityChip(a, { tag: "span", className: "slot-ability" })).join("")}</div>`
+            : "";
     return [
         `<div class="slot">`,
-        `<img class="slot-sprite" src="images/monster/${data.img}" alt="${esc(name)}" width="${w}" height="${h}" loading="lazy">`,
+        `<div class="slot-stage"><img class="slot-sprite" src="images/monster/${data.img}" alt="${esc(name)}" width="${w}" height="${h}" loading="lazy"></div>`,
         `<p class="slot-name">${esc(name)}<span class="slot-el el-${data.element}">${ELEMENT_LABEL[data.element]}</span></p>`,
+        abilities,
         `</div>`,
     ].join("");
 };
 
-const partyWindow = (names, { showMeter = true, framed = true } = {}) => {
-    const slots = `<div class="party-slots">${names.map(slot).join("")}</div>`;
+const partyWindow = (names, { showMeter = true, framed = true, showAbilities = false } = {}) => {
+    const slots = `<div class="party-slots">${names.map((name) => slot(name, { showAbilities })).join("")}</div>`;
     const meter = showMeter
         ? [
               `<div class="party-meter">`,
@@ -165,18 +182,7 @@ const principlesSection = () => {
 const tierBoard = (tiers) => {
     const rows = tiers
         .map((row) => {
-            const chips = row.abilities
-                .map((ability) => {
-                    const specialty = SPECIALTIES[ability];
-                    if (!specialty) {
-                        errors.push(`特殊能力「${ability}」がデータに無い`);
-                        return `<li class="chip-ability">${esc(ability)}</li>`;
-                    }
-                    const nonStackable = !specialty.stackable;
-                    const title = specialty.detail + (nonStackable ? "\n部隊単位の能力（1体分のみ有効）" : "");
-                    return `<li class="chip-ability${nonStackable ? " is-nonstack" : ""}" title="${esc(title)}">${esc(ability)}</li>`;
-                })
-                .join("");
+            const chips = row.abilities.map((ability) => abilityChip(ability)).join("");
             return `<div class="tier-row"><div class="rank rank-${row.rank.toLowerCase()}">${esc(row.rank)}</div><ul class="chips">${chips}</ul></div>`;
         })
         .join("");
@@ -234,8 +240,8 @@ const typesSection = () => {
                 .map((item) =>
                     [
                         `<div class="card formation">`,
-                        `<div class="formation-top"><h4 class="formation-name">${esc(item.name)}</h4>${elementChip(partyElement(item.monsters))}</div>`,
-                        partyWindow(item.monsters, { showMeter: false, framed: false }),
+                        `<div class="formation-top">${elementChip(partyElement(item.monsters))}</div>`,
+                        partyWindow(item.monsters, { showMeter: false, framed: false, showAbilities: true }),
                         `<p class="formation-aim">${esc(item.aim)}</p>`,
                         `</div>`,
                     ].join(""),
@@ -250,7 +256,7 @@ const typesSection = () => {
                 tierBoard(type.tiers),
                 legend,
                 match,
-                `<h3 class="block-head">代表的な編成</h3>`,
+                `<h3 class="block-head">編成例</h3>`,
                 `<div class="formations">${formations}</div>`,
                 `</section>`,
             ].join("\n");
