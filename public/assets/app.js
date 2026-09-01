@@ -89,7 +89,7 @@ const FIGURES = {
 
     types: () => {
         const fig = el("div", "fig-types");
-        for (const label of ["速度", "防御", "火力", "クリティカル"]) {
+        for (const label of ["速度", "防御", "攻撃", "クリティカル"]) {
             fig.append(el("div", `fig-type${label === "速度" ? " is-on" : ""}`, label));
         }
         fig.append(el("div", "fig-type is-etc", "など"));

@@ -610,7 +610,8 @@ h1 {
 
 .formations {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 470px));
+    justify-content: start;
     gap: 20px;
 }
 
