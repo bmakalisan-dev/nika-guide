@@ -291,12 +291,13 @@ const renderShell = () => {
 
     document.getElementById("footer-disclaimer").textContent = GUIDE.footer.disclaimer;
     const credit = document.getElementById("footer-credit");
-    credit.textContent = GUIDE.footer.credit;
+    if (GUIDE.footer.credit) credit.textContent = GUIDE.footer.credit;
     if (GUIDE.site.gameUrl) {
         const link = el("a", null, `${GUIDE.site.gameName}を遊ぶ`);
         link.href = GUIDE.site.gameUrl;
         link.rel = "noopener";
-        credit.append(document.createElement("br"), link);
+        if (credit.textContent) credit.append(document.createElement("br"));
+        credit.append(link);
     }
 };
 
