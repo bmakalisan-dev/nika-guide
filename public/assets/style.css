@@ -105,7 +105,7 @@ h1 {
 /* ───────── 方針（タイトル直下） ───────── */
 
 .policy-body {
-    max-width: 34em;
+    max-width: 40em;
     margin: 24px 0 0;
     color: var(--ink-2);
     font-size: 15.5px;
@@ -113,7 +113,7 @@ h1 {
 }
 
 .policy-points {
-    max-width: 34em;
+    max-width: 40em;
     margin: 14px 0 0;
     padding: 0;
     list-style: none;
@@ -496,7 +496,6 @@ h1 {
 .panel[hidden] { display: none; }
 
 .panel-lead {
-    max-width: 36em;
     margin: 0 0 30px;
     padding-left: 16px;
     border-left: 4px solid var(--tone);
