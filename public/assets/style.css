@@ -397,7 +397,7 @@ h1 {
 .jou-body {
     margin: 12px 0 22px;
     color: var(--ink-2);
-    font-size: 13.5px;
+    font-size: 14px;
     line-height: 1.9;
 }
 
@@ -603,7 +603,7 @@ h1 {
     padding: 7px 15px;
     border-radius: 999px;
     background: var(--stage);
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 600;
     cursor: help;
 }
@@ -629,7 +629,7 @@ h1 {
 .chip-match {
     padding: 7px 15px;
     border-radius: 999px;
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 600;
     cursor: help;
 }
@@ -670,7 +670,7 @@ h1 {
 .formation-aim {
     margin: 16px 0 0;
     color: var(--ink-2);
-    font-size: 13.5px;
+    font-size: 14px;
     line-height: 1.85;
 }
 
