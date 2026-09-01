@@ -61,14 +61,14 @@ const GUIDE = {
                 id: "speed",
                 label: "速度型",
                 accent: "blue",
-                lead: "先に殴る回数で押し切る型。行動タイマーを縮める能力を重ねる。",
+                lead: "速度を上げて手数で押す型。もともと行動が回りやすい。",
                 tiers: [
                     { rank: "S", abilities: ["疾風", "急襲", "指揮"] },
                     { rank: "A", abilities: ["連撃", "精密攻撃"] },
                     { rank: "B", abilities: ["飛翔", "水陸両用"] },
                 ],
                 skills: ["迅速", "攻城"],
-                tarots: [{ name: "星", position: "正" }],
+                tarots: ["戦車"],
                 formations: [
                     { name: "青速攻", monsters: ["鳥人間", "キラーシャーク", "ボス猿"], aim: "疾風で全員の初手を早め、急襲で追撃の波を作る。" },
                     { name: "赤速攻", monsters: ["白虎", "スレイプニル", "阿修羅"], aim: "街解放後の完成形。連撃で速度が伸び続ける。" },
@@ -85,7 +85,7 @@ const GUIDE = {
                     { rank: "B", abilities: ["カウンター", "強気", "再生"] },
                 ],
                 skills: ["鉄壁"],
-                tarots: [{ name: "皇帝", position: "正" }],
+                tarots: ["皇帝"],
                 formations: [
                     { name: "青甲殻", monsters: ["玄武", "アルマジロ", "マジックポット"], aim: "甲殻を重ねて防御力を積み上げ、守護で立ち上がりを凌ぐ。" },
                     { name: "緑耐久", monsters: ["ユグドラシル", "シールダー", "ゾンビ"], aim: "軽減と再生でHPを保たせ、相手の手数を枯らす。" },
@@ -102,7 +102,7 @@ const GUIDE = {
                     { rank: "B", abilities: ["咆哮", "兜割り", "吸血"] },
                 ],
                 skills: ["猛攻", "撃滅"],
-                tarots: [{ name: "愚者", position: "正" }],
+                tarots: ["愚者"],
                 formations: [
                     { name: "赤猛攻", monsters: ["バーサーカー", "ゴブリントロッコ兵", "ワルキューレ"], aim: "狂戦士で部隊全体の攻撃を底上げし、突撃で倍率を伸ばす。" },
                     { name: "緑総攻撃", monsters: ["アヴェンジャー", "キラーマシーン", "バンシー"], aim: "号令の全体攻撃を狙い、咆哮のスタンで相手の反撃を止める。" },
@@ -119,7 +119,7 @@ const GUIDE = {
                     { rank: "B", abilities: ["弱肉強食", "邪眼"] },
                 ],
                 skills: ["会心"],
-                tarots: [{ name: "女帝", position: "正" }],
+                tarots: ["運命の輪", "正義"],
                 formations: [
                     { name: "赤会心", monsters: ["火車", "赤鬼", "レッサーパンダ"], aim: "車輪でクリティカル率を回し、渾身で1発を伸ばす。" },
                     { name: "青会心", monsters: ["ハンター", "キラーシャーク", "サイクロプス"], aim: "クリティカルのたびに行動タイマーが進み、手数と会心が同時に増える。" },

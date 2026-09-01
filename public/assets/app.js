@@ -171,24 +171,19 @@ const tierBoard = (tiers) => {
     return board;
 };
 
-/** 相性が良いスキル・タロットの並び。名前だけの文字列でも { name, position } でも受ける。 */
-const matchList = (entries, kind) => {
+/** 相性が良いスキル・タロットの並び。 */
+const matchList = (names, kind) => {
     const list = el("ul", "chips chips-match");
-    for (const entry of entries ?? []) {
-        const name = typeof entry === "string" ? entry : entry.name;
-        const position = typeof entry === "string" ? null : entry.position;
-        const chip = el("li", `chip-match chip-${kind}`, position ? `${name}（${position}）` : name);
-
+    for (const name of names ?? []) {
+        const chip = el("li", `chip-match chip-${kind}`, name);
         if (kind === "skill") {
             const skill = SKILLS[name];
             if (skill) chip.title = `SP${skill.sp}｜${skill.detail}`;
             else chip.append(el("span", "missing", " ?"));
         } else {
             const tarot = TAROTS[name];
-            if (!tarot) chip.append(el("span", "missing", " ?"));
-            else if (position === "正") chip.title = tarot.upright;
-            else if (position === "逆") chip.title = tarot.reversed;
-            else chip.title = `正: ${tarot.upright}／逆: ${tarot.reversed}`;
+            if (tarot) chip.title = `正: ${tarot.upright}／逆: ${tarot.reversed}`;
+            else chip.append(el("span", "missing", " ?"));
         }
         list.append(chip);
     }

@@ -46,7 +46,7 @@ README.md
 - `policy` … タイトル直下に出す方針。`body` と `points`
 - `overview` … 見取り図に出すモンスター3体と、番号つき解説3点
 - `principles.items` … 三か条。`figure` は `stack`（重複不可）/ `types`（方向性）/ `kibo`（規模の段階）/ `triangle`（三竦み）のいずれか
-- `types.items` … タイプごとの `tiers`（rank と特殊能力名）、`skills`・`tarots`（相性が良いもの。タロットは `{ name, position }` で正逆を指定できる）、`formations`（モンスター3体・狙い）。`accent` は `red` / `green` / `blue` / `amber`
+- `types.items` … タイプごとの `tiers`（rank と特殊能力名）、`skills`・`tarots`（相性が良いもの。名前だけを並べる）、`formations`（モンスター3体・狙い）。`accent` は `red` / `green` / `blue` / `amber`
 - `types.tierLegend` … Tierの下に出す凡例
 - `footer` … 免責文とクレジット
 
