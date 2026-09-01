@@ -20,7 +20,7 @@
 
 <header class="masthead">
 <h1>Nika 編成講座</h1>
-<p class="policy-body">非公式のNika編成講座です。編成の基本的な事項だけをシンプルにまとめています。</p>
+<p class="policy-body">非公式のNika編成講座です。編成で最初に押さえることだけ書いています。</p>
 <ul class="policy-points"><li>実際に強い編成は、その時の相手や環境との相性で変わります。</li><li>迷ったときは国宛などで聞いてみてください。</li></ul>
 </header>
 
@@ -29,7 +29,7 @@
 <h2 class="sec-head" id="overview-head"><span class="sec-text">部隊のしくみ</span></h2>
 <div class="overview-grid">
 <div><div class="card party"><div class="party-slots"><div class="slot"><div class="slot-stage"><img class="slot-sprite" src="images/monster/154.gif" alt="白虎" width="64" height="96" loading="lazy"></div><p class="slot-name">白虎<span class="slot-el el-red">赤</span></p></div><div class="slot"><div class="slot-stage"><img class="slot-sprite" src="images/monster/157.gif" alt="スレイプニル" width="88" height="80" loading="lazy"></div><p class="slot-name">スレイプニル<span class="slot-el el-red">赤</span></p></div><div class="slot"><div class="slot-stage"><img class="slot-sprite" src="images/monster/102.gif" alt="阿修羅" width="80" height="104" loading="lazy"></div><p class="slot-name">阿修羅<span class="slot-el el-red">赤</span></p></div></div><div class="party-meter"><span class="meter-label">部隊HP</span><div class="gauge"><div class="gauge-fill" style="width:100%"></div></div><span class="chip-el el-red" title="部隊属性">赤</span></div></div></div>
-<ol class="callouts"><li><p class="callout-label">枠は3つ</p><p class="callout-body">1部隊はモンスター3体。ここが編成のすべて。</p></li><li><p class="callout-label">HPと防御は合算</p><p class="callout-body">3体のHPと防御力は合算して1つとして扱う。</p></li><li><p class="callout-label">色は多数決</p><p class="callout-body">部隊の属性は3体の多数決で決まる。3色では編成できない（太陽タロットを除く）。</p></li></ol>
+<ol class="callouts"><li><p class="callout-label">モンスターを3体選ぶ</p><p class="callout-body">1部隊はモンスター3体で固定。</p></li><li><p class="callout-label">HPと防御は合算</p><p class="callout-body">3体のHPと防御力は合算して1つとして扱う。</p></li><li><p class="callout-label">色は多数決</p><p class="callout-body">部隊の属性は3体の多数決で決まる。3色では編成できない（太陽タロットを除く）。</p></li></ol>
 </div>
 </section>
 
@@ -44,7 +44,7 @@
 <div class="tabs" role="tablist" aria-label="編成タイプ"><button type="button" class="tab" id="tab-speed" role="tab" aria-controls="panel-speed" aria-selected="true" data-accent="blue" tabindex="0">速度型</button><button type="button" class="tab" id="tab-defense" role="tab" aria-controls="panel-defense" aria-selected="false" data-accent="green" tabindex="-1">防御型</button><button type="button" class="tab" id="tab-attack" role="tab" aria-controls="panel-attack" aria-selected="false" data-accent="red" tabindex="-1">攻撃型</button><button type="button" class="tab" id="tab-critical" role="tab" aria-controls="panel-critical" aria-selected="false" data-accent="amber" tabindex="-1">クリティカル型</button></div>
 <div>
 <section class="panel" id="panel-speed" role="tabpanel" aria-labelledby="tab-speed" data-accent="blue" tabindex="0">
-<p class="panel-lead">攻撃するたびに状態異常や追撃が発動する型。手数を重ねるほど効果が積み上がる。</p>
+<p class="panel-lead">攻撃するたびに状態異常や追撃が発動する型。手数を増やすほど発動する回数が増える。</p>
 <div class="card traits"><h3 class="traits-head">相性が良い特殊能力</h3><ul class="traits-list"><li>攻撃回数が関係する能力</li><li>攻撃時に発動する能力</li><li>先に攻撃すると発動する能力</li><li>攻撃力・速度を増加させる能力</li></ul></div>
 <h3 class="block-head">使用頻度 Tier</h3>
 <div class="card tier"><div class="tier-row"><div class="rank rank-s">S</div><ul class="chips"><li class="chip-ability is-nonstack" title="敵よりも先に攻撃を行った場合に敵から攻撃を受けるまで味方モンスターの次の行動が早まりクリティカル率が上昇します
@@ -76,7 +76,7 @@
 <div class="formations"><div class="card formation"><div class="formation-top"><span class="chip-el el-blue" title="部隊属性">青</span></div><div class="party"><div class="party-slots"><div class="slot"><div class="slot-stage"><img class="slot-sprite" src="images/monster/47.gif" alt="オクトパス" width="136" height="80" loading="lazy"></div><p class="slot-name">オクトパス<span class="slot-el el-blue">青</span></p><div class="slot-abilities"><span class="slot-ability" title="攻撃後に45％の確率で敵の速度を25％低下させる">絡み付き</span><span class="slot-ability is-nonstack" title="3回攻撃を受けるたびに部隊の防御力が 4 + 戦闘開始時防御力合計×4% 加算されます
 部隊単位の能力（1体分のみ有効）">甲殻</span></div></div><div class="slot"><div class="slot-stage"><img class="slot-sprite" src="images/monster/133.gif" alt="シスター" width="48" height="64" loading="lazy"></div><p class="slot-name">シスター<span class="slot-el el-blue">青</span></p><div class="slot-abilities"><span class="slot-ability is-nonstack" title="戦闘開始後に一定時間ごとにHPの10％分のダメージを防ぐシールドを展開します。
 部隊単位の能力（1体分のみ有効）">シールド</span></div></div><div class="slot"><div class="slot-stage"><img class="slot-sprite" src="images/monster/199.gif" alt="炎の巨人" width="64" height="96" loading="lazy"></div><p class="slot-name">炎の巨人<span class="slot-el el-red">赤</span></p><div class="slot-abilities"><span class="slot-ability is-nonstack" title="4回攻撃を受けるごとに20 + 防御力の80％値のダメージを相手に与えます。
-部隊単位の能力（1体分のみ有効）">巨人</span></div></div></div></div><p class="formation-aim">甲殻とシールドで受けを固め、巨人の反撃でダメージを返す。</p></div></div>
+部隊単位の能力（1体分のみ有効）">巨人</span></div></div></div></div><p class="formation-aim">甲殻とシールドで受けて、巨人の反撃で返す。</p></div></div>
 </section>
 <section class="panel" id="panel-attack" role="tabpanel" aria-labelledby="tab-attack" data-accent="red" tabindex="0" hidden>
 <p class="panel-lead">与えたダメージ量が発動条件になる型。1発を重くしてスタンや全体攻撃につなげる。</p>
