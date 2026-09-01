@@ -22,26 +22,29 @@
 
 ## ファイル構成
 
-公開されるのは `public/` の中だけ。
+公開されるのは `public/` の中だけ。`public/index.html` は `content/` から生成する。
 
 ```
-public/
-  index.html                構造だけ。文言は持たない
-  assets/style.css          見た目
-  assets/app.js             GUIDE と生成データからDOMを組み立てる
-  data/guide.js             文面。ここだけ書き換えればページが変わる
-  data/generated.js         生成物。モンスター・特殊能力・スキル・タロット
-  images/monster/*.gif      掲載モンスターが使う画像のみ
-  favicon.svg
+content/guide.js            文面。ここだけ書き換える
+content/generated.js        生成物。モンスター・特殊能力・スキル・タロット
+tools/build.mjs             content から public/index.html を組み立てる
+tools/generate-data.mjs     ゲームの公開APIから generated.js と画像を取り込む
+public/index.html           生成物。直接編集しない
+public/assets/style.css     見た目
+public/assets/tabs.js       タブ切替（22行）
+public/images/monster/*.gif モンスター画像
+public/favicon.svg
 docs/plan.md                この文書
-tools/generate-data.mjs     generated.js と images/ を作り直すスクリプト
 README.md
 ```
 
+文面を変えたら `node tools/build.mjs` を実行してからコミットする。
+
 ## 文面の入れ方
 
-`public/data/guide.js` の `GUIDE` を書き換える。HTML・CSSには触らない。
+`content/guide.js` の `GUIDE` を書き換えて `node tools/build.mjs` を実行する。HTML・CSSには触らない。
 
+- `meta` … description・OGP・robots
 - `site` … タイトル、ゲームのURL（`gameUrl` を入れるとフッターにリンクが出る）
 - `policy` … タイトル直下に出す方針。`body` と `points`
 - `overview` … 見取り図に出すモンスター3体と、番号つき解説3点
@@ -52,14 +55,14 @@ README.md
 
 決まりごと:
 
-- モンスター名・特殊能力名・スキル名・タロット名は**ゲーム内の表記と完全一致**させる。一致しないとチップに赤い「?」が付き、モンスターは画像が出ず「未登録」と表示される。
+- モンスター名・特殊能力名・スキル名・タロット名は**ゲーム内の表記と完全一致**させる。一致しないと**ビルドがエラーで止まる**。
 - 部隊属性はモンスター3体から自動計算する（多数決／3色なら黒）。手で書かない。
-- 特殊能力・スキル・タロットのツールチップの説明文は自動で入る。文面側に書かない。
+- 特殊能力・スキル・タロットのツールチップの説明文はビルド時に入る。文面側に書かない。
 - 特殊能力チップの形も自動。**重複不可は六角形、重複可は丸ピル**で、ゲーム内の表示と揃えている。
 
 ## 掲載データ
 
-`public/data/generated.js` はゲームの公開APIから作った生成物。手で書き換えない。
+`content/generated.js` はゲームの公開APIから作った生成物。手で書き換えない。ブラウザには送らず、ビルド時に使う分だけHTMLへ焼き込む。
 
 | データ | 取得元 |
 |---|---|
@@ -81,6 +84,7 @@ README.md
 - モンスター画像は `image-rendering: pixelated` で原寸表示。拡大しない。
 - 主役の部品は「3体スロット＋合算HP＋属性チップ」の部隊カード。見取り図と編成例で同じ部品を使う。
 - 900px以下で1カラム、560px以下でタブ2列。
+- ブラウザで動くJSはタブ切替だけ。本文はすべて静的HTML。モンスター画像は `width`/`height` を付けて読み込み時のガタつきを防ぐ。
 
 ## 公開（Cloudflare Pages）
 
@@ -101,6 +105,6 @@ cd public && python -m http.server 8787
 ## 残作業
 
 - 各タイプのTier内容、相性が良いスキル・タロット、編成例の確定
-- 内容が固まったら `public/index.html` の robots を `index, follow` に戻す（いまは `noindex`）
+- 内容が固まったら `content/guide.js` の `meta.robots` を `index, follow` に戻す（いまは `noindex`）
 - `site.gameUrl` にゲームのURLを入れる
 - OGP画像（`og:image`）を用意する場合は追加する

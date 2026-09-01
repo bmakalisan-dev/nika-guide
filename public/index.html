@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ニカ 編成講座</title>
-<meta name="description" content="ニカの部隊編成を、三か条とタイプ別の特殊能力Tier・編成例で図解するファン攻略ページ。">
-<!-- 文面が仮のうちは検索に載せない。確定したら content="index, follow" に変える -->
+<meta name="description" content="ニカの部隊編成を、三か条とタイプ別の使用頻度Tier・編成例で図解するファン攻略ページ。">
+<!-- 内容が固まったら content="index, follow" に変える -->
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ニカ 編成講座">
-<meta property="og:description" content="無駄を作らず、方向性を決めて、色で有利を取る。編成の考え方を図で確認する。">
+<meta property="og:description" content="重複を避け、方向性を決めて、規模を上げる。編成の考え方を図で確認する。">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,40 +19,96 @@
 <body>
 
 <header class="masthead">
-    <h1 id="site-title">ニカ 編成講座</h1>
-    <p class="policy-body" id="policy-body"></p>
-    <ul class="policy-points" id="policy-points"></ul>
+<h1>ニカ 編成講座</h1>
+<p class="policy-body">非公式のニカ編成講座です。編成の基本的な事項だけをシンプルにまとめています。</p>
+<ul class="policy-points"><li>実際に強い編成は、その時の相手や環境との相性で変わります。</li><li>迷ったときは国宛などで聞いてみてください。</li></ul>
 </header>
 
 <main>
-    <section class="section" id="overview" aria-labelledby="overview-head">
-        <h2 class="sec-head" id="overview-head"><span class="sec-text"></span></h2>
-        <div class="overview-grid">
-            <div id="overview-party"></div>
-            <ol class="callouts" id="overview-callouts"></ol>
-        </div>
-    </section>
+<section class="section" id="overview" aria-labelledby="overview-head">
+<h2 class="sec-head" id="overview-head"><span class="sec-text">部隊の見取り図</span></h2>
+<div class="overview-grid">
+<div><div class="card party"><div class="party-slots"><div class="slot"><img class="slot-sprite" src="images/monster/154.gif" alt="白虎" width="64" height="96" loading="lazy"><p class="slot-name">白虎<span class="slot-el el-red">赤</span></p></div><div class="slot"><img class="slot-sprite" src="images/monster/157.gif" alt="スレイプニル" width="88" height="80" loading="lazy"><p class="slot-name">スレイプニル<span class="slot-el el-red">赤</span></p></div><div class="slot"><img class="slot-sprite" src="images/monster/102.gif" alt="阿修羅" width="80" height="104" loading="lazy"><p class="slot-name">阿修羅<span class="slot-el el-red">赤</span></p></div></div><div class="party-meter"><span class="meter-label">部隊HP</span><div class="gauge"><div class="gauge-fill" style="width:100%"></div></div><span class="chip-el el-red" title="部隊属性">赤</span></div></div></div>
+<ol class="callouts"><li><p class="callout-label">枠は3つ</p><p class="callout-body">1部隊はモンスター3体。ここが編成のすべて。</p></li><li><p class="callout-label">HPと防御は合算</p><p class="callout-body">3体のHPと防御力は合算して1つとして扱う。</p></li><li><p class="callout-label">色は多数決</p><p class="callout-body">部隊の属性は3体の多数決で決まる。3色では編成できない（太陽タロットを除く）。</p></li></ol>
+</div>
+</section>
 
-    <section class="section" id="principles" aria-labelledby="principles-head">
-        <h2 class="sec-head" id="principles-head"><span class="sec-text"></span></h2>
-        <ol class="jou-list" id="jou-list"></ol>
-    </section>
+<section class="section" id="principles" aria-labelledby="principles-head">
+<h2 class="sec-head" id="principles-head"><span class="sec-text">編成の三か条</span></h2>
+<ol class="jou-list"><li class="card jou"><p class="jou-no">第一条</p><h3 class="jou-head">重複不可の能力は1体まで</h3><p class="jou-body">重複不可の能力は2体以上入れても効果が増えない。さらにその能力を持つモンスターはステータスが低めに設定されている。ゲーム内では重複不可の能力だけ枠が六角形（角ばった形）で表示されるので、それを目印にできる。</p><div class="jou-fig"><div class="fig-stack"><div class="fig-stack-row"><span class="fig-stack-chip is-nonstack">甲殻</span><span class="fig-stack-plus">＋</span><span class="fig-stack-chip is-nonstack is-waste">甲殻</span></div><p class="fig-stack-note">2体目は効果が乗らない</p></div></div></li><li class="card jou"><p class="jou-no">第二条</p><h3 class="jou-head">方向性を決める</h3><p class="jou-body">速度・防御・攻撃・クリティカルなど、どれか1つに寄せた部隊が強い。基本はタロットに応じて決定。スキルも選びやすくなる（迅速・猛攻・鉄壁）。能力同士の相乗効果も狙える（攻撃力上昇と威圧）。</p><div class="jou-fig"><div class="fig-types"><div class="fig-type is-on">速度</div><div class="fig-type">防御</div><div class="fig-type">攻撃</div><div class="fig-type">クリティカル</div><div class="fig-type is-etc">など</div></div></div></li><li class="card jou"><p class="jou-no">第三条</p><h3 class="jou-head">規模が上のモンスターを使う</h3><p class="jou-body">モンスターには規模と施設の解放条件がある。集落→村落→村落施設→宿場町→宿場町施設→街→街施設と段階が上がり、上ほどHPと攻撃力が高い。使えるなら上の段階に乗り換える。ただし街の最上位のドラゴンはコストが跳ね上がるので鉱石と相談。</p><div class="jou-fig"><div class="fig-kibo"><div class="fig-kibo-row" style="width:46%">集落</div><div class="fig-kibo-row" style="width:55%">村落</div><div class="fig-kibo-row" style="width:64%">村落施設</div><div class="fig-kibo-row" style="width:73%">宿場町</div><div class="fig-kibo-row" style="width:82%">宿場町施設</div><div class="fig-kibo-row" style="width:91%">街</div><div class="fig-kibo-row is-top" style="width:100%">街施設</div></div></div></li></ol>
+</section>
 
-    <section class="section" id="types" aria-labelledby="types-head">
-        <h2 class="sec-head" id="types-head"><span class="sec-text"></span></h2>
-        <p class="sec-note" id="types-note"></p>
-        <div class="tabs" role="tablist" aria-label="編成タイプ" id="tablist"></div>
-        <div id="panels"></div>
-    </section>
+<section class="section" id="types" aria-labelledby="types-head">
+<h2 class="sec-head" id="types-head"><span class="sec-text">タイプ別 Tierと編成</span></h2>
+<p class="sec-note">Tierは特殊能力の使用頻度。編成例はその型の組み方の見本。</p>
+<div class="tabs" role="tablist" aria-label="編成タイプ"><button type="button" class="tab" id="tab-speed" role="tab" aria-controls="panel-speed" aria-selected="true" data-accent="blue" tabindex="0">速度型</button><button type="button" class="tab" id="tab-defense" role="tab" aria-controls="panel-defense" aria-selected="false" data-accent="green" tabindex="-1">防御型</button><button type="button" class="tab" id="tab-attack" role="tab" aria-controls="panel-attack" aria-selected="false" data-accent="red" tabindex="-1">攻撃型</button><button type="button" class="tab" id="tab-critical" role="tab" aria-controls="panel-critical" aria-selected="false" data-accent="amber" tabindex="-1">クリティカル型</button></div>
+<div>
+<section class="panel" id="panel-speed" role="tabpanel" aria-labelledby="tab-speed" data-accent="blue" tabindex="0">
+<p class="panel-lead">攻撃するたびに状態異常や追撃が発動する型。手数を重ねるほど効果が積み上がる。</p>
+<div class="card traits"><h3 class="traits-head">相性が良い特殊能力</h3><ul class="traits-list"><li>攻撃回数が関係する能力</li><li>攻撃時に発動する能力</li><li>先に攻撃すると発動する能力</li><li>攻撃力・速度を増加させる能力</li></ul></div>
+<h3 class="block-head">使用頻度 Tier</h3>
+<div class="card tier"><div class="tier-row"><div class="rank rank-s">S</div><ul class="chips"><li class="chip-ability is-nonstack" title="敵よりも先に攻撃を行った場合に敵から攻撃を受けるまで味方モンスターの次の行動が早まりクリティカル率が上昇します
+部隊単位の能力（1体分のみ有効）">急襲</li><li class="chip-ability" title="攻撃後に20％の確率で敵を魅了状態にする">魅了</li></ul></div><div class="tier-row"><div class="rank rank-a">A</div><ul class="chips"><li class="chip-ability" title="攻撃後に30％の確率で敵を石化状態にする">石化</li><li class="chip-ability" title="2回攻撃するごとに敵モンスター全員を凝視して行動タイマーを20下げる（最低0）">邪眼</li><li class="chip-ability is-nonstack" title="自部隊のモンスターが行動した時に30％の確率で攻撃に参加する。
+部隊単位の能力（1体分のみ有効）">追撃</li></ul></div><div class="tier-row"><div class="rank rank-b">B</div><ul class="chips"><li class="chip-ability is-nonstack" title="部隊のモンスターが攻撃した時ダメージを25追加する（重複：無し）
+部隊単位の能力（1体分のみ有効）">ダメージ追加</li><li class="chip-ability" title="与えたダメージの30%分HPを回復する">吸血</li><li class="chip-ability is-nonstack" title="味方部隊が合計して10回の攻撃を行うごとに奥義を発動し敵に防御無視のダメージを与え相手部隊を【スタン】状態にします。（重複：無し）
+部隊単位の能力（1体分のみ有効）">格闘コンボ</li><li class="chip-ability" title="攻撃後に45％の確率で敵をスタン状態にする">咆哮</li></ul></div></div>
+<p class="tier-legend"><span class="chip-ability is-nonstack legend-sample">重複不可</span><span>六角形の枠は重複不可。1体までにする。</span></p>
+<div class="match-grid"><div class="card match"><h3 class="match-head">相性が良いスキル</h3><ul class="chips chips-match"><li class="chip-match chip-skill" title="SP40｜モンスターの速度を20％上昇させる">迅速</li><li class="chip-match chip-skill" title="SP40｜防衛戦以外の戦闘でモンスターの速度を25％上昇させる">攻城</li></ul></div><div class="card match"><h3 class="match-head">相性が良いタロット</h3><ul class="chips chips-match"><li class="chip-match chip-tarot" title="正: 部隊速度＋12％／逆: 部隊攻撃力-6％">戦車</li><li class="chip-match chip-tarot" title="正: 魅了の確率が15%、咆哮、石化の確率が12%上昇／逆: 魅了、咆哮、石化を受ける確率が5%上昇">恋人</li></ul></div></div>
+<h3 class="block-head">代表的な編成</h3>
+<div class="formations"><div class="card formation"><div class="formation-top"><h4 class="formation-name">青足止め</h4><span class="chip-el el-blue" title="部隊属性">青</span></div><div class="party"><div class="party-slots"><div class="slot"><img class="slot-sprite" src="images/monster/123.gif" alt="キラーシャーク" width="80" height="88" loading="lazy"><p class="slot-name">キラーシャーク<span class="slot-el el-blue">青</span></p></div><div class="slot"><img class="slot-sprite" src="images/monster/24.gif" alt="セイレーン" width="56" height="88" loading="lazy"><p class="slot-name">セイレーン<span class="slot-el el-blue">青</span></p></div><div class="slot"><img class="slot-sprite" src="images/monster/53.gif" alt="メデューサ" width="64" height="88" loading="lazy"><p class="slot-name">メデューサ<span class="slot-el el-blue">青</span></p></div></div></div><p class="formation-aim">急襲で先手を取り、魅了と石化で相手の行動を止める。</p></div></div>
+</section>
+<section class="panel" id="panel-defense" role="tabpanel" aria-labelledby="tab-defense" data-accent="green" tabindex="0" hidden>
+<p class="panel-lead">攻撃を受けるほど固くなり、反撃が伸びる型。長引かせて勝つ。</p>
+<div class="card traits"><h3 class="traits-head">相性が良い特殊能力</h3><ul class="traits-list"><li>相手から攻撃を受けた時に発動する能力</li><li>戦闘が長引いた場合に有利になる能力</li><li>防御力を増加させる能力</li></ul></div>
+<h3 class="block-head">使用頻度 Tier</h3>
+<div class="card tier"><div class="tier-row"><div class="rank rank-s">S</div><ul class="chips"><li class="chip-ability is-nonstack" title="3回攻撃を受けるたびに部隊の防御力が 4 + 戦闘開始時防御力合計×4% 加算されます
+部隊単位の能力（1体分のみ有効）">甲殻</li><li class="chip-ability is-nonstack" title="攻撃を先に受けた場合に防御力が20％上がります
+部隊単位の能力（1体分のみ有効）">カウンター</li></ul></div><div class="tier-row"><div class="rank rank-a">A</div><ul class="chips"><li class="chip-ability is-nonstack" title="敵部隊から連続で攻撃を受けた場合に、1回に付き10ダメージを軽減します。
+部隊単位の能力（1体分のみ有効）">大盾Ⅰ</li><li class="chip-ability is-nonstack" title="敵部隊から連続で攻撃を受けた場合に、1回に付き15ダメージを軽減します。
+部隊単位の能力（1体分のみ有効）">大盾Ⅱ</li><li class="chip-ability is-nonstack" title="戦闘開始後に一定時間ごとにHPの10％分のダメージを防ぐシールドを展開します。
+部隊単位の能力（1体分のみ有効）">シールド</li><li class="chip-ability is-nonstack" title="4回攻撃を受けるごとに20 + 防御力の80％値のダメージを相手に与えます。
+部隊単位の能力（1体分のみ有効）">巨人</li></ul></div><div class="tier-row"><div class="rank rank-b">B</div><ul class="chips"><li class="chip-ability is-nonstack" title="相手の部隊のHPが高かった場合に防御力20％上昇します。
+部隊単位の能力（1体分のみ有効）">強気</li><li class="chip-ability" title="【魔法】3回詠唱後に強力なダメージを与える。詠唱中に攻撃を受けるたびに威力が増し、次の詠唱が早まる">禁呪</li></ul></div></div>
+<p class="tier-legend"><span class="chip-ability is-nonstack legend-sample">重複不可</span><span>六角形の枠は重複不可。1体までにする。</span></p>
+<div class="match-grid"><div class="card match"><h3 class="match-head">相性が良いスキル</h3><ul class="chips chips-match"><li class="chip-match chip-skill" title="SP40｜モンスターの防御力を20％上昇させる。">鉄壁</li></ul></div><div class="card match"><h3 class="match-head">相性が良いタロット</h3><ul class="chips chips-match"><li class="chip-match chip-tarot" title="正: 部隊防御力+12%／逆: 部隊速度-6%">皇帝</li></ul></div></div>
+<h3 class="block-head">代表的な編成</h3>
+<div class="formations"><div class="card formation"><div class="formation-top"><h4 class="formation-name">青耐久</h4><span class="chip-el el-blue" title="部隊属性">青</span></div><div class="party"><div class="party-slots"><div class="slot"><img class="slot-sprite" src="images/monster/47.gif" alt="オクトパス" width="136" height="80" loading="lazy"><p class="slot-name">オクトパス<span class="slot-el el-blue">青</span></p></div><div class="slot"><img class="slot-sprite" src="images/monster/133.gif" alt="シスター" width="48" height="64" loading="lazy"><p class="slot-name">シスター<span class="slot-el el-blue">青</span></p></div><div class="slot"><img class="slot-sprite" src="images/monster/199.gif" alt="炎の巨人" width="64" height="96" loading="lazy"><p class="slot-name">炎の巨人<span class="slot-el el-red">赤</span></p></div></div></div><p class="formation-aim">甲殻とシールドで受けを固め、巨人の反撃でダメージを返す。</p></div></div>
+</section>
+<section class="panel" id="panel-attack" role="tabpanel" aria-labelledby="tab-attack" data-accent="red" tabindex="0" hidden>
+<p class="panel-lead">与えたダメージ量が発動条件になる型。1発を重くしてスタンや全体攻撃につなげる。</p>
+<div class="card traits"><h3 class="traits-head">相性が良い特殊能力</h3><ul class="traits-list"><li>相手に与えたダメージで発動する能力</li><li>相手に与えるダメージを増加させる能力</li><li>攻撃力に依存してダメージが増加する能力</li><li>攻撃力・速度を増加させる能力</li></ul></div>
+<h3 class="block-head">使用頻度 Tier</h3>
+<div class="card tier"><div class="tier-row"><div class="rank rank-s">S</div><ul class="chips"><li class="chip-ability is-nonstack" title="相手の部隊の最大HP（補正による増加前）の10％のダメージを与えた場合に3回まで相手部隊をスタン状態にします。
+部隊単位の能力（1体分のみ有効）">威圧</li><li class="chip-ability is-nonstack" title="通常攻撃で1戦闘のうちに最大HPの60％以上のダメージを与えた場合に救援を除いた全モンスターで攻撃を行います。
+部隊単位の能力（1体分のみ有効）">号令</li></ul></div><div class="tier-row"><div class="rank rank-a">A</div><ul class="chips"><li class="chip-ability is-nonstack" title="攻撃を先に受けた場合に、味方部隊の最初の攻撃の攻撃力が2.5倍になる。
+部隊単位の能力（1体分のみ有効）">擬態</li><li class="chip-ability" title="戦闘開始時に射撃を放ち、行動開始前にダメージを与える">射撃</li></ul></div><div class="tier-row"><div class="rank rank-b">B</div><ul class="chips"><li class="chip-ability" title="戦闘開始時にダメージと共に相手の防御力を10％低下します。（重複：2体、3体でダメージが向上します。）">トライデント</li><li class="chip-ability" title="攻撃時に自分の攻撃力が1.2倍づつ上昇します。(最大4倍)">突撃</li></ul></div></div>
+<p class="tier-legend"><span class="chip-ability is-nonstack legend-sample">重複不可</span><span>六角形の枠は重複不可。1体までにする。</span></p>
+<div class="match-grid"><div class="card match"><h3 class="match-head">相性が良いスキル</h3><ul class="chips chips-match"><li class="chip-match chip-skill" title="SP40｜モンスターの攻撃力を20%上昇させる。">猛攻</li><li class="chip-match chip-skill" title="SP65｜モンスターの攻撃力防御力を25％上昇させる。">撃滅</li></ul></div><div class="card match"><h3 class="match-head">相性が良いタロット</h3><ul class="chips chips-match"><li class="chip-match chip-tarot" title="正: 部隊攻撃力+12%／逆: 部隊防御力-6%">力</li><li class="chip-match chip-tarot" title="正: 攻撃力＋12％UP／逆: 地形・拠点の補正を受けられない">愚者</li></ul></div></div>
+<h3 class="block-head">代表的な編成</h3>
+<div class="formations"><div class="card formation"><div class="formation-top"><h4 class="formation-name">赤先撃ち</h4><span class="chip-el el-red" title="部隊属性">赤</span></div><div class="party"><div class="party-slots"><div class="slot"><img class="slot-sprite" src="images/monster/254.gif" alt="カメレオン" width="80" height="32" loading="lazy"><p class="slot-name">カメレオン<span class="slot-el el-red">赤</span></p></div><div class="slot"><img class="slot-sprite" src="images/monster/228.gif" alt="サンドワーム" width="48" height="72" loading="lazy"><p class="slot-name">サンドワーム<span class="slot-el el-red">赤</span></p></div><div class="slot"><img class="slot-sprite" src="images/monster/216.gif" alt="サハギン" width="72" height="40" loading="lazy"><p class="slot-name">サハギン<span class="slot-el el-blue">青</span></p></div></div></div><p class="formation-aim">トライデントで開幕に防御を削り、擬態の初撃で威圧のスタンにつなげる。</p></div></div>
+</section>
+<section class="panel" id="panel-critical" role="tabpanel" aria-labelledby="tab-critical" data-accent="amber" tabindex="0" hidden>
+<p class="panel-lead">クリティカル発生時に効果が乗る型。会心の回数がスタンと火力に変わる。</p>
+<div class="card traits"><h3 class="traits-head">相性が良い特殊能力</h3><ul class="traits-list"><li>クリティカル発動時に発動する能力</li></ul></div>
+<h3 class="block-head">使用頻度 Tier</h3>
+<div class="card tier"><div class="tier-row"><div class="rank rank-s">S</div><ul class="chips"><li class="chip-ability is-nonstack" title="クリティカル3回ごとに相手部隊を【スタン】状態にします
+部隊単位の能力（1体分のみ有効）">願い事</li></ul></div><div class="tier-row"><div class="rank rank-a">A</div><ul class="chips"><li class="chip-ability" title="クリティカル発生時のダメージが上がります。（ダメージ倍率：1.8倍）">渾身</li><li class="chip-ability is-nonstack" title="自身がクリティカルを発生させた時に、3回まで味方全員の行動タイマー＋25します。
+部隊単位の能力（1体分のみ有効）">精密攻撃</li></ul></div><div class="tier-row"><div class="rank rank-b">B</div><ul class="chips"><li class="chip-ability" title="自身がクリティカルを発生させた時に敵部隊の全モンスターの攻撃力を15％減少させます（対ゴーレム時は7.5％、1回まで）">武器砕き</li><li class="chip-ability is-nonstack" title="5回攻撃を受けた後の攻撃がダメージ2.3倍になります（重複：無し）
+部隊単位の能力（1体分のみ有効）">闘争心</li></ul></div></div>
+<p class="tier-legend"><span class="chip-ability is-nonstack legend-sample">重複不可</span><span>六角形の枠は重複不可。1体までにする。</span></p>
+<div class="match-grid"><div class="card match"><h3 class="match-head">相性が良いスキル</h3><ul class="chips chips-match"><li class="chip-match chip-skill" title="SP20｜クリティカル発動率15%UP">会心</li></ul></div><div class="card match"><h3 class="match-head">相性が良いタロット</h3><ul class="chips chips-match"><li class="chip-match chip-tarot" title="正: クリティカル率が10%上昇する。さらに大吉の時+20％吉の時+10％追加される／逆: 凶の時に防御-5% 大凶の時に防御-10%">運命の輪</li><li class="chip-match chip-tarot" title="正: クリティカル率、咆哮の発生率16％UP／逆: 戦闘開始時に相手のHPが最大ではない場合に速度-4%">正義</li></ul></div></div>
+<h3 class="block-head">代表的な編成</h3>
+<div class="formations"><div class="card formation"><div class="formation-top"><h4 class="formation-name">緑会心</h4><span class="chip-el el-green" title="部隊属性">緑</span></div><div class="party"><div class="party-slots"><div class="slot"><img class="slot-sprite" src="images/monster/204.gif" alt="ブラウニー" width="40" height="56" loading="lazy"><p class="slot-name">ブラウニー<span class="slot-el el-green">緑</span></p></div><div class="slot"><img class="slot-sprite" src="images/monster/54.gif" alt="仮面" width="56" height="72" loading="lazy"><p class="slot-name">仮面<span class="slot-el el-green">緑</span></p></div><div class="slot"><img class="slot-sprite" src="images/monster/173.gif" alt="バット" width="32" height="56" loading="lazy"><p class="slot-name">バット<span class="slot-el el-green">緑</span></p></div></div></div><p class="formation-aim">願い事のスタンで相手を止めつつ、バリアと吸血で粘る。</p></div></div>
+</section>
+</div>
+</section>
 </main>
 
 <footer class="footer">
-    <p class="disclaimer" id="footer-disclaimer"></p>
-    <p class="credit" id="footer-credit"></p>
+<p class="disclaimer">当サイトは非公式のファン攻略ページです。ゲーム運営とは関係ありません。内容は個人の見解であり、ゲーム側の仕様変更で古くなることがあります。</p>
+
 </footer>
 
-<script src="data/generated.js"></script>
-<script src="data/guide.js"></script>
-<script src="assets/app.js"></script>
+<script src="assets/tabs.js"></script>
 </body>
 </html>

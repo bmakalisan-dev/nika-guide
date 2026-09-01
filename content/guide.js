@@ -1,6 +1,12 @@
 // このファイルが文面のすべて。ここだけ書き換えればページが変わる。
 
 const GUIDE = {
+    meta: {
+        description: "ニカの部隊編成を、三か条とタイプ別の使用頻度Tier・編成例で図解するファン攻略ページ。",
+        ogDescription: "重複を避け、方向性を決めて、規模を上げる。編成の考え方を図で確認する。",
+        robots: "noindex, nofollow", // 内容が固まったら "index, follow"
+    },
+
     site: {
         title: "ニカ 編成講座",
         gameName: "ニカ",

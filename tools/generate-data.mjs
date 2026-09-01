@@ -1,4 +1,4 @@
-// public/data/generated.js と public/images/monster/ を作る。
+// content/generated.js と public/images/monster/ を作る。
 // 取得元はゲームの公開API・配信中のスクリプト・公開画像。
 //
 // 使い方: node tools/generate-data.mjs [ゲームのベースURL]
@@ -73,8 +73,8 @@ const SKILLS = ${json(skills)};
 
 const TAROTS = ${json(tarots)};
 `;
-mkdirSync(join(root, "public/data"), { recursive: true });
-writeFileSync(join(root, "public/data/generated.js"), body, "utf8");
+mkdirSync(join(root, "content"), { recursive: true });
+writeFileSync(join(root, "content/generated.js"), body, "utf8");
 
 console.log(`monsters: ${monsters.length} / specialties: ${specialties.length} / skills: ${skills.length} / tarots: ${tarots.length} / images: ${usedImages.length}`);
 if (missing.length > 0) console.log(`画像が見つからなかったモンスター: ${missing.join(", ")}`);

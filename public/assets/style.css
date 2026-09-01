@@ -658,8 +658,6 @@ h1 {
 
 .footer a { color: var(--accent); }
 
-.missing { color: var(--red); font-size: 12px; }
-
 /* ───────── レスポンシブ ───────── */
 
 @media (max-width: 900px) {
