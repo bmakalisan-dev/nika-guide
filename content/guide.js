@@ -70,7 +70,7 @@ const GUIDE = {
                 tiers: [
                     { rank: "S", abilities: ["急襲", "魅了"] },
                     { rank: "A", abilities: ["石化", "邪眼", "追撃"] },
-                    { rank: "B", abilities: ["ダメージ追加", "吸血", "格闘コンボ", "咆哮"] },
+                    { rank: "B", abilities: ["ダメージ追加", "吸血", "格闘コンボ", "咆哮", "再生"] },
                 ],
                 traits: [
                     "攻撃回数が関係する能力",
