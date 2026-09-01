@@ -3,7 +3,7 @@
 :root {
     --ink: #14162b;
     --ink-2: #585e7d;
-    --ink-3: #8b90ab;
+    --ink-3: #656a87;
     --line: #e5e8f6;
     --paper: #ffffff;
     --wash: #f4f6fd;
@@ -57,7 +57,7 @@ img { display: block; }
 .masthead {
     max-width: 960px;
     margin: 0 auto;
-    padding: 92px 0 8px;
+    padding: 48px 0 8px;
 }
 
 h1 {
@@ -73,7 +73,7 @@ h1 {
 .section {
     max-width: 960px;
     margin: 0 auto;
-    padding-top: 92px;
+    padding-top: 48px;
 }
 
 .sec-head {
@@ -292,10 +292,10 @@ h1 {
 .chip-el.el-blue::before { background: var(--blue); }
 .chip-el.el-black::before { background: var(--accent); }
 
-.slot-el.el-red { color: var(--red); }
-.slot-el.el-green { color: var(--green); }
-.slot-el.el-blue { color: var(--blue); }
-.slot-el.el-black { color: var(--accent); }
+.slot-el.el-red { color: #c33528; }
+.slot-el.el-green { color: #10804a; }
+.slot-el.el-blue { color: #2360c6; }
+.slot-el.el-black { color: #5b3cc4; }
 
 /* ───────── 見取り図 ───────── */
 
@@ -434,7 +434,7 @@ h1 {
     position: relative;
     background: #e7e9f4;
     box-shadow: none;
-    color: var(--ink-3);
+    color: var(--ink-2);
 }
 
 .fig-stack-chip.is-waste::after {
@@ -503,7 +503,7 @@ h1 {
     border: 0;
     border-radius: 999px;
     background: none;
-    color: var(--ink-2);
+    color: #4a5070;
     font-family: var(--body);
     font-size: clamp(12.5px, 2.4vw, 14.5px);
     font-weight: 700;
@@ -585,9 +585,9 @@ h1 {
     font-weight: 800;
 }
 
-.rank-s { background: linear-gradient(180deg, #ffb443, var(--amber)); }
-.rank-a { background: linear-gradient(180deg, #8a6cf0, var(--accent)); }
-.rank-b { background: linear-gradient(180deg, #5f93f0, var(--blue)); }
+.rank-s { background: linear-gradient(180deg, #ffc35e, #f0920f); color: #33230a; }
+.rank-a { background: linear-gradient(180deg, #7a5be6, #5c3ecd); }
+.rank-b { background: linear-gradient(180deg, #3573dd, #1f56bd); }
 .rank-c { background: var(--ink-3); }
 
 .chips {
@@ -636,7 +636,7 @@ h1 {
 
 .chip-skill { background: rgba(47, 116, 232, .12); color: #1f5bc4; }
 
-.chip-tarot { background: rgba(242, 151, 27, .16); color: #a3620a; }
+.chip-tarot { background: rgba(242, 151, 27, .16); color: #8a5208; }
 
 /* ───────── 編成例 ───────── */
 
@@ -678,7 +678,7 @@ h1 {
 
 .footer {
     max-width: 960px;
-    margin: 96px auto 0;
+    margin: 56px auto 0;
     padding-top: 26px;
     border-top: 1px solid var(--line);
     color: var(--ink-3);
@@ -708,9 +708,9 @@ h1 {
 @media (max-width: 560px) {
     body { padding: 0 16px 56px; }
 
-    .masthead { padding: 52px 0 4px; }
+    .masthead { padding: 36px 0 4px; }
 
-    .section { padding-top: 64px; }
+    .section { padding-top: 40px; }
 
     .tabs { grid-template-columns: repeat(2, 1fr); border-radius: 22px; }
 
